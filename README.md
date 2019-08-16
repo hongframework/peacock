@@ -6,6 +6,8 @@ peacock，孔雀，一站式API在线开发平台，通过模块化思路，采�
 
 ## peacock有哪些功能？
 
+   ![启动](https://github.com/hongframework/wiki-images/blob/master/operate/%E5%8F%91%E5%B8%83%E5%90%AF%E5%8A%A8.png)
+
 <center>
 ![avatar](https://github.com/hongframework/wiki-images/blob/master/peacock/1_relation.png?raw=true)
 </center>
