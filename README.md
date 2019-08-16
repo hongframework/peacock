@@ -1,8 +1,7 @@
 # peacock
 peacock，孔雀，一站式API在线开发平台，通过模块化思路，采用积木堆砌的方式进行在线API的组装开发，支持多机热发布、ApiDoc在线翻译、在线测试管理、服务治理，由JAVA语言
-<center>
+<center  class="half">
 ![avatar](https://github.com/hongframework/wiki-images/blob/master/peacock/0_overview.png?raw=true)
-</center>
 
 ## peacock有哪些功能？
 
