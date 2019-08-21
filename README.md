@@ -16,6 +16,8 @@ peacock，孔雀，一站式API在线开发平台，通过模块化思路，采�
 * 测试节点（Test）：获取授权API信息，在线提供API测试、以及测试用例保存、收藏、分享
 * 监控节点（Trace）：获取API调用Trace，在线展示，分析接口调用情况
 
+![avatar](https://github.com/hongframework/wiki-images/blob/master/peacock/2_lark_cluster.png?raw=true)
+
 ## hframework框架主要特点
 * 使用系统抽取的组件进行在线配置开发，无需编写代码
 * api的多组件之间调用关系，可发布为JVM内本地调用，也可以发布为微服务远程调用
