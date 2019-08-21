@@ -1,0 +1,33 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_test_case_DS4Q</code>
+  <entity>cfg_test_case</entity>
+  <name>测试CASE【查询】</name>
+  <fields>
+    <field code="id" name="ID" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="name_LKE" name="名称" edit-type="input" not-null="true"/>
+    <field code="path_LKE" name="访问路径" edit-type="input" not-null="true"/>
+    <field code="parameter_str_LKE" name="访问参数" edit-type="input"/>
+    <field code="request_body_LKE" name="请求报文" edit-type="input"/>
+    <field code="response_body_LKE" name="响应报文" edit-type="input"/>
+    <field code="method_LKE" name="请求方式" edit-type="input" not-null="true"/>
+    <field code="is_store" name="是否收藏" edit-type="select">
+      <enum-class code="DEFAULT.BOOLEAN"/>
+    </field>
+    <field code="is_pub" name="是否公开" edit-type="select">
+      <enum-class code="DEFAULT.BOOLEAN"/>
+    </field>
+    <field code="status" name="状态" edit-type="select">
+      <enum-class code="hfsec_user.status"/>
+    </field>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+    </field>
+    <field code="create_time" name="创建时间" edit-type="hidden"/>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+    </field>
+    <field code="modify_time" name="修改时间" edit-type="hidden"/>
+    <field code="description_LKE" name="描述" edit-type="input"/>
+  </fields>
+</dataset>

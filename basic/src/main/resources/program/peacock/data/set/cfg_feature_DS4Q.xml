@@ -1,0 +1,19 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_feature_DS4Q</code>
+  <entity>cfg_feature</entity>
+  <name>特征【查询】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="input" is-key="true"/>
+    <field code="name" name="特征名称" edit-type="input" is-name="true" not-null="true"/>
+    <field code="TYPE" name="特征类型" edit-type="select">
+      <enum-class code="cfg_feature.TYPE"/>
+    </field>
+    <field code="remark" name="备注" edit-type="input"/>
+    <field code="ctime" name="创建时间" edit-type="input" not-null="true"/>
+    <field code="mtime" name="修改时间" edit-type="input"/>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="cfg_feature.state"/>
+    </field>
+  </fields>
+</dataset>

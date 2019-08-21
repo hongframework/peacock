@@ -1,0 +1,35 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_runtime_dictionary_items</code>
+  <entity>cfg_runtime_dictionary_items</entity>
+  <name>API字典项【默认】</name>
+  <fields>
+    <field code="id" name="字典项id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="code" name="字典项编码" edit-type="input" not-null="true"/>
+    <field code="dictionary_id" name="字典id" edit-type="hidden" not-null="true">
+      <rel entity-code="cfg_runtime_dictionary/id/name"/>
+    </field>
+    <field code="name" name="字典项名称" edit-type="input" not-null="true"/>
+    <field code="status" name="状态"  edit-type="select">
+      <enum-class code="DEFAULT.BOOLEAN-NORMAL-DISABLE"/>
+    </field>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="create_time" name="创建时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+    <field code="modify_time" name="修改时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+  </fields>
+</dataset>

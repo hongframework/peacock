@@ -1,0 +1,27 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_index_mysql</code>
+  <entity>cfg_index_mysql</entity>
+  <name>MYSQL指标【默认】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="hidden" is-key="true">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>text</update-edit-type>     </field>
+    <field code="index_id" name="指标ID" edit-type="select" >
+      <rel entity-code="cfg_index/id/name"/>
+    </field>
+    <field code="mysql_id" name="MYSQL ID" edit-type="select">
+      <rel entity-code="cfg_datasouce_mysql/id/remark"/>
+    </field>
+    <field code="table" name="表名" edit-type="select">
+      <rel url="/extend/getDbTables.json" rel-field="mysql_id"/>
+    </field>
+    <field code="primary_key" name="主键" edit-type="select">
+      <rel url="/extend/getDbColumns.json" rel-field="table,mysql_id"/>
+    </field>
+    <field code="column" name="属性列"  edit-type="select">
+      <rel url="/extend/getDbColumns.json" rel-field="table,mysql_id"/>
+    </field>
+    <field code="sql" name="SQL语句" edit-type="textarea"/>
+    <field code="ctime" name="创建时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>text</update-edit-type>     </field>
+    <field code="mtime" name="修改时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>hidden</update-edit-type>     </field>
+  </fields>
+</dataset>

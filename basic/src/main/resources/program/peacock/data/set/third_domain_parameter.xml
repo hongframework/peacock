@@ -1,0 +1,36 @@
+<dataset>
+  <module>config</module>
+  <code>third_domain_parameter</code>
+  <entity>third_domain_parameter</entity>
+  <name>访问域参数【默认】</name>
+  <fields>
+    <field code="id" name="访问域参数id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="name" name="访问域参数名称" edit-type="input" is-name="true" not-null="true"/>
+    <field code="domain_id" name="访问域id" edit-type="hidden" not-null="true">
+      <rel entity-code="third_domain/id/name"/>
+    </field>
+    <field code="code" name="访问域参数编码" edit-type="input" not-null="true"/>
+    <field code="value" name="访问域参数取值" edit-type="input" not-null="true"/>
+    <field code="visiable" name="是否可见" edit-type="select" not-null="true">
+      <enum-class code="DEFAULT.BOOLEAN"/>
+    </field>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="create_time" name="创建时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+    <field code="modify_time" name="修改时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+  </fields>
+</dataset>

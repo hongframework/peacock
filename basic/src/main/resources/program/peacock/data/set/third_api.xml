@@ -1,0 +1,51 @@
+<dataset>
+  <module>config</module>
+  <code>third_api</code>
+  <entity>third_api</entity>
+  <name>访问API【默认】</name>
+  <fields>
+    <field code="domain_id" name="访问域id" edit-type="select" not-null="true">
+      <rel entity-code="third_domain/id/name"/>
+    </field>
+    <field code="id" name="apiid" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="api_type" name="api类型" edit-type="select" not-null="true">
+      <enum-class code="third_api.api_type"/>
+    </field>
+    <field code="name" name="api名称" edit-type="input" is-name="true" not-null="true"/>
+    <field code="path" name="请求路径" edit-type="input" not-null="true"/>
+    <field code="method" name="请求方式" edit-type="select" not-null="true">
+      <enum-class code="third_api.method"/>
+    </field>
+    <field code="tags" name="标签" edit-type="select">
+      <enum-class code="third_api.tags"/>
+    </field>
+    <field code="request_type" name="请求类型" edit-type="select" not-null="true">
+      <enum-class code="third_api.request_type"/>
+    </field>
+    <field code="response_type" name="响应类型" edit-type="select" not-null="true">
+      <enum-class code="third_api.response_type"/>
+    </field>
+    <field code="content" name="配置报文" edit-type="hidden" show-type="hidden"/>
+    <field code="status" name="状态" edit-type="select">
+      <enum-class code="third_api.status"/>
+    </field>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="create_time" name="创建时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+    <field code="modify_time" name="修改时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+  </fields>
+</dataset>

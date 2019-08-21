@@ -1,0 +1,17 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_datasouce_hbase_DS4Q</code>
+  <entity>cfg_datasouce_hbase</entity>
+  <name>HBASE【查询】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="input" is-key="true"/>
+    <field code="zklist" name="ZKLIST" edit-type="input" not-null="true"/>
+    <field code="zkport" name="ZKPROT" edit-type="input" not-null="true"/>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="cfg_datasouce_hbase.state"/>
+    </field>
+    <field code="remark" name="备注" edit-type="input"/>
+    <field code="ctime" name="创建时间" edit-type="input" not-null="true"/>
+    <field code="mtime" name="修改时间" edit-type="input"/>
+  </fields>
+</dataset>

@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.peacock.config.dao.CfgApiConfMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.peacock.config.domain.model.CfgApiConf" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="path" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="version" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="prop_key" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ctime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mtime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="valid_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="invalid_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="state" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="invalid_letime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hframework.peacock.config.domain.model.CfgApiConf" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="path" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="version" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="prop_key" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ctime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mtime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="valid_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="invalid_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="state" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="invalid_letime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="prop_value" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, `path`, version, prop_key, remark, ctime, mtime, valid_time, invalid_time, `state`, 
+    invalid_letime
+  </sql>
+  <sql id="Blob_Column_List" >
+    prop_value
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hframework.peacock.config.domain.model.CfgApiConf_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `cfg_api_conf`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.peacock.config.domain.model.CfgApiConf_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_api_conf`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `cfg_api_conf`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `cfg_api_conf`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.peacock.config.domain.model.CfgApiConf_Example" >
+    delete from `cfg_api_conf`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.peacock.config.domain.model.CfgApiConf" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_api_conf` (`path`, version, prop_key, 
+      remark, ctime, mtime, 
+      valid_time, invalid_time, `state`, 
+      invalid_letime, prop_value)
+    values (#{path,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, #{propKey,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{ctime,jdbcType=INTEGER}, #{mtime,jdbcType=INTEGER}, 
+      #{validTime,jdbcType=INTEGER}, #{invalidTime,jdbcType=INTEGER}, #{state,jdbcType=TINYINT}, 
+      #{invalidLetime,jdbcType=INTEGER}, #{propValue,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.peacock.config.domain.model.CfgApiConf" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_api_conf`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="path != null" >
+        `path`,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="propKey != null" >
+        prop_key,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="mtime != null" >
+        mtime,
+      </if>
+      <if test="validTime != null" >
+        valid_time,
+      </if>
+      <if test="invalidTime != null" >
+        invalid_time,
+      </if>
+      <if test="state != null" >
+        `state`,
+      </if>
+      <if test="invalidLetime != null" >
+        invalid_letime,
+      </if>
+      <if test="propValue != null" >
+        prop_value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="propKey != null" >
+        #{propKey,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="mtime != null" >
+        #{mtime,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null" >
+        #{validTime,jdbcType=INTEGER},
+      </if>
+      <if test="invalidTime != null" >
+        #{invalidTime,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="invalidLetime != null" >
+        #{invalidLetime,jdbcType=INTEGER},
+      </if>
+      <if test="propValue != null" >
+        #{propValue,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.peacock.config.domain.model.CfgApiConf_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_api_conf`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_api_conf`
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.path != null" >
+        `path` = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.propKey != null" >
+        prop_key = #{record.propKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null" >
+        ctime = #{record.ctime,jdbcType=INTEGER},
+      </if>
+      <if test="record.mtime != null" >
+        mtime = #{record.mtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.validTime != null" >
+        valid_time = #{record.validTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.invalidTime != null" >
+        invalid_time = #{record.invalidTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null" >
+        `state` = #{record.state,jdbcType=TINYINT},
+      </if>
+      <if test="record.invalidLetime != null" >
+        invalid_letime = #{record.invalidLetime,jdbcType=INTEGER},
+      </if>
+      <if test="record.propValue != null" >
+        prop_value = #{record.propValue,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update `cfg_api_conf`
+    set id = #{record.id,jdbcType=BIGINT},
+      `path` = #{record.path,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=VARCHAR},
+      prop_key = #{record.propKey,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=INTEGER},
+      mtime = #{record.mtime,jdbcType=INTEGER},
+      valid_time = #{record.validTime,jdbcType=INTEGER},
+      invalid_time = #{record.invalidTime,jdbcType=INTEGER},
+      `state` = #{record.state,jdbcType=TINYINT},
+      invalid_letime = #{record.invalidLetime,jdbcType=INTEGER},
+      prop_value = #{record.propValue,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_api_conf`
+    set id = #{record.id,jdbcType=BIGINT},
+      `path` = #{record.path,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=VARCHAR},
+      prop_key = #{record.propKey,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=INTEGER},
+      mtime = #{record.mtime,jdbcType=INTEGER},
+      valid_time = #{record.validTime,jdbcType=INTEGER},
+      invalid_time = #{record.invalidTime,jdbcType=INTEGER},
+      `state` = #{record.state,jdbcType=TINYINT},
+      invalid_letime = #{record.invalidLetime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.peacock.config.domain.model.CfgApiConf" >
+    update `cfg_api_conf`
+    <set >
+      <if test="path != null" >
+        `path` = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="propKey != null" >
+        prop_key = #{propKey,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="mtime != null" >
+        mtime = #{mtime,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null" >
+        valid_time = #{validTime,jdbcType=INTEGER},
+      </if>
+      <if test="invalidTime != null" >
+        invalid_time = #{invalidTime,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        `state` = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="invalidLetime != null" >
+        invalid_letime = #{invalidLetime,jdbcType=INTEGER},
+      </if>
+      <if test="propValue != null" >
+        prop_value = #{propValue,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hframework.peacock.config.domain.model.CfgApiConf" >
+    update `cfg_api_conf`
+    set `path` = #{path,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      prop_key = #{propKey,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=INTEGER},
+      mtime = #{mtime,jdbcType=INTEGER},
+      valid_time = #{validTime,jdbcType=INTEGER},
+      invalid_time = #{invalidTime,jdbcType=INTEGER},
+      `state` = #{state,jdbcType=TINYINT},
+      invalid_letime = #{invalidLetime,jdbcType=INTEGER},
+      prop_value = #{propValue,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.peacock.config.domain.model.CfgApiConf" >
+    update `cfg_api_conf`
+    set `path` = #{path,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      prop_key = #{propKey,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=INTEGER},
+      mtime = #{mtime,jdbcType=INTEGER},
+      valid_time = #{validTime,jdbcType=INTEGER},
+      invalid_time = #{invalidTime,jdbcType=INTEGER},
+      `state` = #{state,jdbcType=TINYINT},
+      invalid_letime = #{invalidLetime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,21 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_api_conf_DS4Q</code>
+  <entity>cfg_api_conf</entity>
+  <name>API配置表【查询】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="input" is-key="true"/>
+    <field code="path" name="API路径" edit-type="input" not-null="true"/>
+    <field code="version" name="API版本" edit-type="input" not-null="true"/>
+    <field code="prop_key" name="配置Key" edit-type="input" not-null="true"/>
+    <field code="prop_value" name="配置Value" edit-type="input" not-null="true"/>
+    <field code="remark" name="备注" edit-type="input"/>
+    <field code="ctime" name="创建时间" edit-type="input" not-null="true"/>
+    <field code="mtime" name="修改时间" edit-type="input"/>
+    <field code="valid_time" name="生效时间" edit-type="input"/>
+    <field code="invalid_time" name="失效时间" edit-type="input"/>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="cfg_api_conf.state"/>
+    </field>
+  </fields>
+</dataset>

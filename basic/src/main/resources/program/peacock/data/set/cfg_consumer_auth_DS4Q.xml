@@ -1,0 +1,17 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_consumer_auth_DS4Q</code>
+  <entity>cfg_consumer_auth</entity>
+  <name>API消费者授权【查询】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="input" is-key="true"/>
+    <field code="client_id" name="客户端访问Id" edit-type="input" not-null="true"/>
+    <field code="auth_path" name="API路径，支持*匹配" edit-type="input" not-null="true"/>
+    <field code="remark" name="备注" edit-type="input"/>
+    <field code="ctime" name="创建时间" edit-type="input" not-null="true"/>
+    <field code="mtime" name="修改时间" edit-type="input"/>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="DEFAULT.BOOLEAN-NORMAL-DISABLE"/>
+    </field>
+  </fields>
+</dataset>

@@ -1,0 +1,20 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_datasouce_mysql_DS4Q</code>
+  <entity>cfg_datasouce_mysql</entity>
+  <name>MYSQL【查询】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="input" is-key="true"/>
+    <field code="host" name="HOST" edit-type="input" not-null="true"/>
+    <field code="port" name="PROT" edit-type="input" not-null="true"/>
+    <field code="database" name="DATABASE" edit-type="input" not-null="true"/>
+    <field code="username" name="USERNAME" edit-type="input" is-name="true" not-null="true"/>
+    <field code="password" name="PASSWORD" edit-type="input"/>
+    <field code="remark" name="备注" edit-type="input"/>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="cfg_datasouce_mysql.state"/>
+    </field>
+    <field code="ctime" name="创建时间" edit-type="input" not-null="true"/>
+    <field code="mtime" name="修改时间" edit-type="input"/>
+  </fields>
+</dataset>

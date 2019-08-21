@@ -1,0 +1,337 @@
+<dataset>
+  <module>hffile</module>
+  <code>peacock_api_xeditor</code>
+  <entity>cfg_runtime_api</entity>
+  <name>peacockapi配置</name>
+  <source>file</source>
+  <descriptor>
+    <node code="api" name="api信息" editor="eForm">
+      <node code="parameters.parameter[]" name="请求参数"  editor="virtualContainer,eList" events="ADD_ROW.SHOW">
+        <node code="checker[]" name="校验信息" editor="eList" events="TOGGLE"/>
+        <node code="option[]" name="取值范围" editor="eList" events="TOGGLE"/>
+      </node>
+      <node code="prehandler[]" name="前置处理器"  editor="flatContainer,eForm" events="ADD_ROW">
+          <node code="precheck[]" name="条件" editor="eList" events="TOGGLE"/>
+          <node code="parameter[]" name="参数" editor="eList" events="TOGGLE"/><!--  event-extend="absolute_false" -->
+          <node code="result[]" name="结果" editor="eList" events="TOGGLE"/>
+      </node>
+      <!--<node code="precheck[]" name="前置检查" editor="eList"  events="TOGGLE"/>-->
+      <node code="handlers.handler[]" name="处理器"  editor="flatContainer,eForm" events="ADD_ROW.SHOW">
+          <node code="precheck[]" name="条件" editor="eList" events="TOGGLE"/>
+          <node code="parameter[]" name="参数" editor="eList" events="TOGGLE"/><!--   event-extend="absolute_false" -->
+          <node code="result[]" name="结果" editor="eList" events="TOGGLE"/>
+      </node>
+      <!--<node code="precheck[]" name="后置检查"  editor="eList" events="TOGGLE"/>-->
+      <!--<node code="result[]" name="结果" editor="eList" events="TOGGLE.SHOW"/>-->
+      <node code="schema[]" name="上级路径备注（仅供文档展现使用）" editor="eList" events="TOGGLE.SHOW"/>
+      <!--<node code="result-view" name="结果预览" editor="eForm" events="TOGGLE.SHOW"/>-->
+
+  </node>
+
+      <helper-script>
+        <!--codemirror-->
+          <![CDATA[
+
+
+            var link=document.createElement("link");
+            link.rel="stylesheet";
+            link.href="/static/app/plugins/prism.css";
+            document.getElementsByTagName('head')[0].appendChild(link);
+
+            var script=document.createElement("script");
+            script.type="text/javascript";
+            script.src="/static/app/plugins/prism.js";
+            document.getElementsByTagName('head')[0].appendChild(script);
+
+            var script=document.createElement("script");
+            script.type="text/javascript";
+            script.src="/static/app/js/api-edit.js";
+            document.getElementsByTagName('head')[0].appendChild(script);
+      ]]>
+      </helper-script>
+
+    <!--<helper-script>-->
+      <!--<![CDATA[-->
+         <!--$("input[value=sql]:visible:first").parent().parent().find("input#value").change(function(){-->
+            <!--var $this = $(this);-->
+            <!--var $resultBody = $this.parents("[component=flatContainer]:first").children(":last").find("table.table tbody");-->
+            <!--var firstResult = $resultBody.find("tr td:first input").val();-->
+            <!--if("${RUNTIME.RESULT}" == firstResult) {-->
+                <!--var allValues = {};-->
+                <!--var $names = $this.parents("table:first").find("input[name='#name']");-->
+                <!--$this.parents("table:first").find("input#value").each(function(i){-->
+                    <!--allValues[$names.eq(i).val()] = $(this).val();-->
+                <!--});-->
+                <!--var clazz = $this.parents("[component=flatContainer]:first").children(":first").find("[name='#class']").val();-->
+                <!--var path = $this.parents("[component=flatContainer]:first").children(":first").find("[name='#path']").val();-->
+
+                <!--var data = {"allValues" : JSON.stringify(allValues), "clazz" : clazz, "path" : path};-->
+                 <!--console.info(data);-->
+
+                <!--$.ajax({-->
+                    <!--url: "/extend/dynSqlResultParse",-->
+                    <!--data: data,-->
+                    <!--type: 'post',-->
+                    <!--success: function(data){-->
+                        <!--if(data.resultCode != '0') {-->
+                            <!--alert(data.resultMessage);-->
+                            <!--return;-->
+                        <!--}-->
+                        <!--var _data = data.data;-->
+
+                        <!--var $baseTr = $resultBody.children(":first");-->
+                        <!--for(var i in _data) {-->
+                            <!--var $newTr = $baseTr.clone();-->
+                            <!--$newTr.find("input[name='#name']").val(_data[i]);-->
+                            <!--$baseTr.after($newTr)-->
+                        <!--}-->
+                        <!--$baseTr.remove();-->
+                    <!--}-->
+                <!--});-->
+            <!--}-->
+        <!--});-->
+      <!--]]>-->
+    <!--</helper-script>-->
+
+    <helper-datas>
+      <helper-data target-id="api.parameters.parameter" embed-class="com.hframework.smartweb.SmartExpanderFactory" embed-method="getParameterXml" embed-type="runtime" >
+        <!--<helper-label name="认证类">-->
+          <!--<helper-item  name="TOKEN"><![CDATA[-->
+				<!--<parameter name="token" type="string" required="true" description="TOKEN，登录口令"/>-->
+			<!--]]></helper-item>-->
+            <!--<helper-item  name="用户ID"><![CDATA[-->
+				<!--<parameter name="userId" type="int" required="true" description="用户ID"/>-->
+			<!--]]></helper-item>-->
+          <!--<helper-item  name="客户端ID"><![CDATA[-->
+				<!--<parameter name="clientId" type="int" required="true" description="客户端ID"/>-->
+			<!--]]></helper-item>-->
+          <!--<helper-item  name="时间戳"><![CDATA[-->
+				<!--<parameter name="timestamp" type="int" required="true" description="时间戳"/>-->
+			<!--]]></helper-item>-->
+          <!--<helper-item  name="签名"><![CDATA[-->
+				<!--<parameter name="sign" type="string" required="true" description="签名"/>-->
+			<!--]]></helper-item>-->
+        <!--</helper-label>-->
+        <!--<helper-label name="其他">-->
+          <!--<helper-item  name="页编号"><![CDATA[-->
+				<!--<parameter name="pageNo" type="int" default="1" min="1" required="false"  description="页编号"/>-->
+			<!--]]></helper-item>-->
+          <!--<helper-item  name="页大小"><![CDATA[-->
+				<!--<parameter name="pageSize" type="int" default="20" min="1" max="1000" required="false"   description="页大小"/>-->
+			<!--]]></helper-item>-->
+          <!--<helper-item  name="开始时间"><![CDATA[-->
+				<!--<parameter name="startTime" type="date" required="true"   description="开始时间">-->
+                    <!--<parser class="com.hframework.smartweb.bean.parser.DateSmartParser" pattern="YYYYMMDD"/>-->
+                    <!--<checker class="com.hframework.smartweb.bean.checker.DateChecker" pattern="LessNow"/>-->
+                <!--</parameter>-->
+			<!--]]></helper-item>-->
+        <!--</helper-label>-->
+      </helper-data>
+      <helper-data target-id="api.prehandler"  embed-class="com.hframework.smartweb.SmartHandlerFactory" embed-method="getPreHandlersXML" embed-type="ajax">
+        <!--<XML_EMBED class="com.hframework.smartweb.SmartHandlerFactory" method="getPreHandlersXML"></XML_EMBED>-->
+        <!--<helper-label name="认证类">-->
+          <!--<helper-item  name="验签认证"><![CDATA[-->
+                <!--<prehandler id="P2pIdSmartParser" class="com.hframework.smartweb.examples.CommonSignHandler"  version="auto" returnType="Object">-->
+                <!--</prehandler>-->
+			<!--]]></helper-item>-->
+          <!--<helper-item  name="TOKEN解析"><![CDATA[-->
+                <!--<prehandler id="P2pIdSmartParser" class="com.hframework.smartweb.examples.UserTokenParseHandler" version="auto" returnType="Object">-->
+                    <!--<parameter name="token" scope="parameter" ref="token"/>-->
+                    <!--<result name="p2pId"></result>-->
+                <!--</prehandler>-->
+			<!--]]></helper-item>-->
+        <!--</helper-label>-->
+      </helper-data>
+      <helper-data target-id="api.handlers.handler"  embed-class="com.hframework.smartweb.SmartHandlerFactory" embed-method="getHandlersXML" embed-type="ajax">
+        <!--<XML_EMBED class="com.hframework.smartweb.SmartHandlerFactory" method="getHandlersXML"></XML_EMBED>-->
+        <!--<helper-label name="认证类">-->
+          <!--<helper-item  name="获取用户基本信息"><![CDATA[-->
+                <!--<handler id="P2pIdSmartParser" class="com.hframework.smartweb.examples.UserSecretHandler" returnType="Object"/>-->
+			<!--]]></helper-item>-->
+          <!--<helper-item  name="获取用户统计信息"><![CDATA[-->
+                <!--<handler id="P2pIdSmartParser" class="com.hframework.smartweb.examples.UserSecretHandler" returnType="Object">-->
+                    <!--<result name="p2pId"></result>-->
+                <!--</handler>-->
+			<!--]]></helper-item>-->
+          <!--<helper-item  name="获取用户投资列表"><![CDATA[-->
+                <!--<handler id="P2pIdSmartParser" class="com.hframework.smartweb.examples.UserSecretHandler" returnType="Array">-->
+                    <!--<result name="p2pId"></result>-->
+                <!--</handler>-->
+			<!--]]></helper-item>-->
+        <!--</helper-label>-->
+      </helper-data>
+    </helper-datas>
+
+    <fields code="api" name="api信息">
+      <field code="#module" name="模块" edit-type="input" />
+      <field code="#name" name="名称" edit-type="input" />
+      <field code="#version" name="版本" edit-type="disable" />
+      <field code="#title" name="标题" edit-type="input" />
+      <field code="#description" name="描述" edit-type="input" />
+    </fields>
+    <fields code="api.parameters.parameter" name="请求参数">
+      <field code="#name" name="名称" edit-type="input" />
+      <field code="#description" name="描述" edit-type="input" />
+      <field code="#type" name="类型" edit-type="select">
+        <enum value="string" name="字符串"></enum>
+        <enum value="int" name="整数"></enum>
+        <enum value="float" name="小数"></enum>
+        <enum value="date" name="日期"></enum>
+        <enum value="boolean" name="Boolean"></enum>
+        <enum value="int[]" name="整数数组"></enum>
+        <enum value="string[]" name="字符串数组"></enum>
+      </field>
+      <field code="#required" name="是否必须" edit-type="select">
+        <enum value="true" name="是"></enum>
+        <enum value="false" name="否"></enum>
+      </field>
+      <field code="parser#class" name="解析器" edit-type="select" rel-field="#type"
+             embed-class="com.hframework.smartweb.SmartExpanderFactory" embed-method="getParserXml" embed-type="ajax">
+        <!--<enum value="com.hframework.smartweb.bean.parser.DateSmartParser" name="日期" parent="date"></enum>-->
+      </field>
+      <field code="parser#pattern" name="解析格式" edit-type="select" rel-field="parser#class"
+             embed-class="com.hframework.smartweb.SmartExpanderFactory" embed-method="getParserPatternXml" embed-type="ajax">
+        <!--<enum value="YYYYMMDD" name="YYYYMMDD"  parent="com.hframework.smartweb.bean.parser.DateSmartParser"></enum>-->
+      </field>
+      <field code="#min" name="最小值" edit-type="input" />
+      <field code="#max" name="最大值" edit-type="input" />
+      <field code="#default" name="默认值" edit-type="input" />
+      <field code="checker" name="校验信息" edit-type="component-panel" >
+        <rel entity-code="peacock_api_xeditor#api.parameters.parameter.checker"/>
+      </field>
+      <field code="option" name="取值范围" edit-type="component-panel" >
+        <rel entity-code="peacock_api_xeditor#api.parameters.parameter.option"/>
+      </field>
+    </fields>
+
+    <fields code="api.parameters.parameter.checker" name="校验信息">
+      <field code="#class" name="校验器" edit-type="select"
+             embed-class="com.hframework.smartweb.SmartExpanderFactory" embed-method="getCheckerXml" embed-type="ajax">
+        <!--<enum value="com.hframework.smartweb.bean.checker.MoneyChecker" name="金额"></enum>-->
+        <!--<enum value="com.hframework.smartweb.bean.checker.DateChecker" name="日期"></enum>-->
+      </field>
+      <field code="#pattern" name="校验格式" edit-type="select"  rel-field="#class"
+             embed-class="com.hframework.smartweb.SmartExpanderFactory" embed-method="getCheckerPatternXml" embed-type="ajax">
+        <!--<enum value="IsNormalMoney" name="IsNormalMoney"></enum>-->
+        <!--<enum value="LessNow" name="LessNow"></enum>-->
+      </field>
+    </fields>
+
+    <fields code="api.parameters.parameter.option" name="取值范围">
+      <field code="#value" name="值" edit-type="input" />
+      <field code="#" name="描述" edit-type="input" />
+      <field code="#default" name="是否默认" edit-type="select">
+        <enum value="true" name="是"></enum>
+        <enum value="false" name="否"></enum>
+      </field>
+    </fields>
+
+
+    <fields code="api.precheck" name="校验">
+      <field code="#scope" name="类型" edit-type="select">
+        <enum value="global" name="上下文"></enum>
+        <enum value="parameter" name="请求"></enum>
+        <enum value="result" name="响应"></enum>
+      </field>
+      <field code="express" name="表达式" edit-type="input" />
+    </fields>
+
+    <fields code="api.prehandler" extend="api.handlers.handler"  name="前置处理器"/>
+    <fields code="api.prehandler.parameter" extend="api.handlers.handler.parameter" />
+    <fields code="api.prehandler.precheck" extend="api.precheck" />
+    <fields code="api.prehandler.result" extend="api.result" />
+
+    <fields code="api.handlers.handler" name="处理器">
+      <field code="#class" name="实现类" edit-type="hidden" />
+      <field code="#path" name="路径" edit-type="text" />
+      <field code="#version" name="版本" edit-type="text" />
+      <field code="#returnType" name="返回类型" edit-type="text" />
+      <field code="#parentPath" name="上级路径" edit-type="input" />
+      <!--<field code="#parentName" name="路径名称" edit-type="input" />-->
+    </fields>
+
+
+    <fields code="api.handlers.handler.precheck" extend="api.precheck" />
+    <fields code="api.handlers.handler.result" extend="api.result" />
+    <fields code="api.handlers.handler.parameter"  name="请求参数">
+      <field code="#name" name="名称" edit-type="input" />
+      <field code="#description" name="描述" edit-type="input" />
+      <field code="#scope" name="类型" edit-type="select">
+        <enum value="global" name="上下文"></enum>
+        <enum value="parameter" name="请求"></enum>
+        <enum value="result" name="响应"></enum>
+      </field>
+      <field code="#ref" name="关联属性" edit-type="select" />
+      <field code="#default" name="默认值" edit-type="hidden" />
+      <field code="value" name="值" edit-type="input" />
+    </fields>
+
+
+    <fields code="api.result"  name="响应结果">
+      <field code="#name" name="名称" edit-type="input" />
+      <field code="#description" name="描述" edit-type="input" />
+      <field code="#type" name="类型" edit-type="select">
+        <enum value="string" name="字符串"></enum>
+        <enum value="int" name="整数"></enum>
+        <enum value="float" name="小数"></enum>
+        <enum value="date" name="日期"></enum>
+        <enum value="boolean" name="Boolean"></enum>
+        <enum value="object[]" name="对象数组"></enum>
+      </field>
+      <field code="#alias" name="别名" edit-type="input" />
+      <field code="#default" name="默认值" edit-type="input" />
+      <field code="#formatter" name="格式化器" edit-type="select"  rel-field="#type"
+             embed-class="com.hframework.smartweb.SmartExpanderFactory" embed-method="getFormatterXml" embed-type="ajax">
+        <!--<enum value="com.hframework.smartweb.bean.formatter.MoneyFormatter" name="金额格式化" parent="float"></enum>-->
+        <!--<enum value="com.hframework.smartweb.bean.formatter.DateFormatter" name="时间格式化" parent="date"></enum>-->
+        <!--<enum value="com.hframework.smartweb.bean.formatter.TimestampFormatter" name="时间格式化" parent="int"></enum>-->
+        <!--<enum value="com.hframework.smartweb.bean.formatter.FloatFormatter" name="数字格式化" parent="float"></enum>-->
+        <!--<enum value="com.hframework.smartweb.bean.formatter.RateFormatter" name="占比格式化" parent="float"></enum>-->
+        <!--<enum value="com.hframework.smartweb.bean.formatter.KeyInfoFormatter" name="关键信息格式化" parent="string"></enum>-->
+        <!--<enum value="com.hframework.smartweb.bean.formatter.StringToArrayFormatter" name="字符串转数组" parent="string"></enum>-->
+        <!--<enum value="com.hframework.smartweb.bean.formatter.BooleanToNumberFormatter" name="Boolean转数字" parent="boolean"></enum>-->
+
+      </field>
+      <field code="#pattern" name="格式" edit-type="select" rel-field="#formatter"
+             embed-class="com.hframework.smartweb.SmartExpanderFactory" embed-method="getFormatterPatternXml" embed-type="ajax">
+        <!--<enum value="FormatMoneyWan" name="万元单位" parent="com.hframework.smartweb.bean.formatter.MoneyFormatter"></enum>-->
+        <!--<enum value="FormatMoneyRegion" name="区间范围" parent="com.hframework.smartweb.bean.formatter.MoneyFormatter"></enum>-->
+        <!--<enum value="FormatMoneyThousands" name="千分位" parent="com.hframework.smartweb.bean.formatter.MoneyFormatter"></enum>-->
+        <!--<enum value="FormatMoneyChinese" name="中文单位" parent="com.hframework.smartweb.bean.formatter.MoneyFormatter"></enum>-->
+
+        <!--<enum value="yyyy-MM-dd hh:mm:ss" name="YYYY-MM-DD 24H:MM:SS" parent="com.hframework.smartweb.bean.formatter.DateFormatter"></enum>-->
+        <!--<enum value="yyyy-MM-dd" name="YYYY-MM-DD" parent="com.hframework.smartweb.bean.formatter.DateFormatter"></enum>-->
+        <!--<enum value="NTimeUnitBeforeOrAfter" name="n(天/小时)(前/后)" parent="com.hframework.smartweb.bean.formatter.DateFormatter"></enum>-->
+
+        <!--<enum value="yyyy-MM-dd hh:mm:ss" name="YYYY-MM-DD 24H:MM:SS" parent="com.hframework.smartweb.bean.formatter.TimestampFormatter"></enum>-->
+        <!--<enum value="yyyy-MM-dd" name="YYYY-MM-DD" parent="com.hframework.smartweb.bean.formatter.TimestampFormatter"></enum>-->
+        <!--<enum value="NTimeUnitBeforeOrAfter" name="n(天/小时)(前/后)" parent="com.hframework.smartweb.bean.formatter.TimestampFormatter"></enum>-->
+
+        <!--<enum value="Percent" name="百分之*" parent="com.hframework.smartweb.bean.formatter.RateFormatter"></enum>-->
+        <!--<enum value="Thousandth" name="千分之*" parent="com.hframework.smartweb.bean.formatter.RateFormatter"></enum>-->
+        <!--<enum value="ExtremeOf" name="万分之*" parent="com.hframework.smartweb.bean.formatter.RateFormatter"></enum>-->
+        <!--<enum value="Auto" name="智能占比" parent="com.hframework.smartweb.bean.formatter.RateFormatter"></enum>-->
+
+        <!--<enum value="NameTitle" name="先生/女生称谓" parent="com.hframework.smartweb.bean.formatter.KeyInfoFormatter"></enum>-->
+        <!--<enum value="TelPhoneVague" name="手机号加※" parent="com.hframework.smartweb.bean.formatter.KeyInfoFormatter"></enum>-->
+        <!--<enum value="IdCardVague" name="身份证加※" parent="com.hframework.smartweb.bean.formatter.KeyInfoFormatter"></enum>-->
+        <!--<enum value="," name="," parent="com.hframework.smartweb.bean.formatter.StringToArrayFormatter"></enum>-->
+        <!--<enum value="，" name="，" parent="com.hframework.smartweb.bean.formatter.StringToArrayFormatter"></enum>-->
+        <!--<enum value="$,$$$.$$" name="#.###.##" parent="com.hframework.smartweb.bean.formatter.FloatFormatter"></enum>-->
+        <!--<enum value="$,$$$.$$$" name="#.###.###" parent="com.hframework.smartweb.bean.formatter.FloatFormatter"></enum>-->
+        <!--<enum value="$,$$0.00" name="#.##0.00" parent="com.hframework.smartweb.bean.formatter.FloatFormatter"></enum>-->
+        <!--<enum value="$,$$0.000" name="#.##0.000" parent="com.hframework.smartweb.bean.formatter.FloatFormatter"></enum>-->
+        <!--<enum value="$,$$0.000克" name="#.##0.000克" parent="com.hframework.smartweb.bean.formatter.FloatFormatter"></enum>-->
+      </field>
+    </fields>
+    <!--<fields code="api.result-view"  name="响应结果预览">-->
+      <!--<field code="value" name="JSON" edit-type="textarea" />-->
+    <!--</fields>-->
+    <fields code="api.schema"  name="上级路径备注（仅供文档展现使用）">
+      <field code="#path" name="路径" edit-type="input" />
+      <field code="#description" name="描述" edit-type="input" />
+    </fields>
+
+
+  </descriptor>
+</dataset>

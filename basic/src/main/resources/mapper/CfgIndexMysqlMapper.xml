@@ -1,0 +1,336 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.peacock.config.dao.CfgIndexMysqlMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.peacock.config.domain.model.CfgIndexMysql" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="index_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mysql_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="table" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="primary_key" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="column" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ctime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mtime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hframework.peacock.config.domain.model.CfgIndexMysql" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="index_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mysql_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="table" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="primary_key" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="column" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ctime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mtime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="sql" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, index_id, mysql_id, `table`, primary_key, `column`, ctime, mtime
+  </sql>
+  <sql id="Blob_Column_List" >
+    `sql`
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hframework.peacock.config.domain.model.CfgIndexMysql_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `cfg_index_mysql`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.peacock.config.domain.model.CfgIndexMysql_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_index_mysql`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `cfg_index_mysql`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from `cfg_index_mysql`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.peacock.config.domain.model.CfgIndexMysql_Example" >
+    delete from `cfg_index_mysql`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.peacock.config.domain.model.CfgIndexMysql" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_index_mysql` (index_id, mysql_id, `table`, 
+      primary_key, `column`, ctime, 
+      mtime, `sql`)
+    values (#{indexId,jdbcType=INTEGER}, #{mysqlId,jdbcType=INTEGER}, #{table,jdbcType=VARCHAR}, 
+      #{primaryKey,jdbcType=VARCHAR}, #{column,jdbcType=VARCHAR}, #{ctime,jdbcType=INTEGER}, 
+      #{mtime,jdbcType=INTEGER}, #{sql,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.peacock.config.domain.model.CfgIndexMysql" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_index_mysql`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="indexId != null" >
+        index_id,
+      </if>
+      <if test="mysqlId != null" >
+        mysql_id,
+      </if>
+      <if test="table != null" >
+        `table`,
+      </if>
+      <if test="primaryKey != null" >
+        primary_key,
+      </if>
+      <if test="column != null" >
+        `column`,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="mtime != null" >
+        mtime,
+      </if>
+      <if test="sql != null" >
+        `sql`,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="indexId != null" >
+        #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="mysqlId != null" >
+        #{mysqlId,jdbcType=INTEGER},
+      </if>
+      <if test="table != null" >
+        #{table,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryKey != null" >
+        #{primaryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="column != null" >
+        #{column,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="mtime != null" >
+        #{mtime,jdbcType=INTEGER},
+      </if>
+      <if test="sql != null" >
+        #{sql,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.peacock.config.domain.model.CfgIndexMysql_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_index_mysql`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_index_mysql`
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.indexId != null" >
+        index_id = #{record.indexId,jdbcType=INTEGER},
+      </if>
+      <if test="record.mysqlId != null" >
+        mysql_id = #{record.mysqlId,jdbcType=INTEGER},
+      </if>
+      <if test="record.table != null" >
+        `table` = #{record.table,jdbcType=VARCHAR},
+      </if>
+      <if test="record.primaryKey != null" >
+        primary_key = #{record.primaryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.column != null" >
+        `column` = #{record.column,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null" >
+        ctime = #{record.ctime,jdbcType=INTEGER},
+      </if>
+      <if test="record.mtime != null" >
+        mtime = #{record.mtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.sql != null" >
+        `sql` = #{record.sql,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update `cfg_index_mysql`
+    set id = #{record.id,jdbcType=INTEGER},
+      index_id = #{record.indexId,jdbcType=INTEGER},
+      mysql_id = #{record.mysqlId,jdbcType=INTEGER},
+      `table` = #{record.table,jdbcType=VARCHAR},
+      primary_key = #{record.primaryKey,jdbcType=VARCHAR},
+      `column` = #{record.column,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=INTEGER},
+      mtime = #{record.mtime,jdbcType=INTEGER},
+      `sql` = #{record.sql,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_index_mysql`
+    set id = #{record.id,jdbcType=INTEGER},
+      index_id = #{record.indexId,jdbcType=INTEGER},
+      mysql_id = #{record.mysqlId,jdbcType=INTEGER},
+      `table` = #{record.table,jdbcType=VARCHAR},
+      primary_key = #{record.primaryKey,jdbcType=VARCHAR},
+      `column` = #{record.column,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=INTEGER},
+      mtime = #{record.mtime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.peacock.config.domain.model.CfgIndexMysql" >
+    update `cfg_index_mysql`
+    <set >
+      <if test="indexId != null" >
+        index_id = #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="mysqlId != null" >
+        mysql_id = #{mysqlId,jdbcType=INTEGER},
+      </if>
+      <if test="table != null" >
+        `table` = #{table,jdbcType=VARCHAR},
+      </if>
+      <if test="primaryKey != null" >
+        primary_key = #{primaryKey,jdbcType=VARCHAR},
+      </if>
+      <if test="column != null" >
+        `column` = #{column,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="mtime != null" >
+        mtime = #{mtime,jdbcType=INTEGER},
+      </if>
+      <if test="sql != null" >
+        `sql` = #{sql,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hframework.peacock.config.domain.model.CfgIndexMysql" >
+    update `cfg_index_mysql`
+    set index_id = #{indexId,jdbcType=INTEGER},
+      mysql_id = #{mysqlId,jdbcType=INTEGER},
+      `table` = #{table,jdbcType=VARCHAR},
+      primary_key = #{primaryKey,jdbcType=VARCHAR},
+      `column` = #{column,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=INTEGER},
+      mtime = #{mtime,jdbcType=INTEGER},
+      `sql` = #{sql,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.peacock.config.domain.model.CfgIndexMysql" >
+    update `cfg_index_mysql`
+    set index_id = #{indexId,jdbcType=INTEGER},
+      mysql_id = #{mysqlId,jdbcType=INTEGER},
+      `table` = #{table,jdbcType=VARCHAR},
+      primary_key = #{primaryKey,jdbcType=VARCHAR},
+      `column` = #{column,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=INTEGER},
+      mtime = #{mtime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

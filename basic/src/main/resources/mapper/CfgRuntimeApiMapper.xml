@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.peacock.config.dao.CfgRuntimeApiMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.peacock.config.domain.model.CfgRuntimeApi" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="module" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="path" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="version" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ctime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mtime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="valid_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="invalid_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="state" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="module_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="program_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="tags" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="version_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="examples" jdbcType="VARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.hframework.peacock.config.domain.model.CfgRuntimeApi" >
+    <constructor >
+      <idArg column="id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="module" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="name" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="title" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="description" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="path" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="version" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="remark" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="ctime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mtime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="valid_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="invalid_time" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="state" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="module_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="program_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="tags" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="version_id" jdbcType="BIGINT" javaType="java.lang.Long" />
+      <arg column="examples" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="content" jdbcType="LONGVARCHAR" javaType="java.lang.String" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, `module`, `name`, title, description, `path`, version, remark, ctime, mtime, 
+    valid_time, invalid_time, `state`, module_id, program_id, tags, version_id, examples
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.hframework.peacock.config.domain.model.CfgRuntimeApi_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `cfg_runtime_api`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.peacock.config.domain.model.CfgRuntimeApi_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_runtime_api`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from `cfg_runtime_api`
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from `cfg_runtime_api`
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.peacock.config.domain.model.CfgRuntimeApi_Example" >
+    delete from `cfg_runtime_api`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.peacock.config.domain.model.CfgRuntimeApi" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_runtime_api` (`module`, `name`, title, 
+      description, `path`, version, 
+      remark, ctime, mtime, 
+      valid_time, invalid_time, `state`, 
+      module_id, program_id, tags, 
+      version_id, examples, content
+      )
+    values (#{module,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{ctime,jdbcType=INTEGER}, #{mtime,jdbcType=INTEGER}, 
+      #{validTime,jdbcType=INTEGER}, #{invalidTime,jdbcType=INTEGER}, #{state,jdbcType=TINYINT}, 
+      #{moduleId,jdbcType=BIGINT}, #{programId,jdbcType=BIGINT}, #{tags,jdbcType=VARCHAR}, 
+      #{versionId,jdbcType=BIGINT}, #{examples,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.peacock.config.domain.model.CfgRuntimeApi" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_runtime_api`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="module != null" >
+        `module`,
+      </if>
+      <if test="name != null" >
+        `name`,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="description != null" >
+        description,
+      </if>
+      <if test="path != null" >
+        `path`,
+      </if>
+      <if test="version != null" >
+        version,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="mtime != null" >
+        mtime,
+      </if>
+      <if test="validTime != null" >
+        valid_time,
+      </if>
+      <if test="invalidTime != null" >
+        invalid_time,
+      </if>
+      <if test="state != null" >
+        `state`,
+      </if>
+      <if test="moduleId != null" >
+        module_id,
+      </if>
+      <if test="programId != null" >
+        program_id,
+      </if>
+      <if test="tags != null" >
+        tags,
+      </if>
+      <if test="versionId != null" >
+        version_id,
+      </if>
+      <if test="examples != null" >
+        examples,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="module != null" >
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="mtime != null" >
+        #{mtime,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null" >
+        #{validTime,jdbcType=INTEGER},
+      </if>
+      <if test="invalidTime != null" >
+        #{invalidTime,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=TINYINT},
+      </if>
+      <if test="moduleId != null" >
+        #{moduleId,jdbcType=BIGINT},
+      </if>
+      <if test="programId != null" >
+        #{programId,jdbcType=BIGINT},
+      </if>
+      <if test="tags != null" >
+        #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="versionId != null" >
+        #{versionId,jdbcType=BIGINT},
+      </if>
+      <if test="examples != null" >
+        #{examples,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.peacock.config.domain.model.CfgRuntimeApi_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_runtime_api`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_runtime_api`
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.module != null" >
+        `module` = #{record.module,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null" >
+        `name` = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.description != null" >
+        description = #{record.description,jdbcType=VARCHAR},
+      </if>
+      <if test="record.path != null" >
+        `path` = #{record.path,jdbcType=VARCHAR},
+      </if>
+      <if test="record.version != null" >
+        version = #{record.version,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null" >
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.ctime != null" >
+        ctime = #{record.ctime,jdbcType=INTEGER},
+      </if>
+      <if test="record.mtime != null" >
+        mtime = #{record.mtime,jdbcType=INTEGER},
+      </if>
+      <if test="record.validTime != null" >
+        valid_time = #{record.validTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.invalidTime != null" >
+        invalid_time = #{record.invalidTime,jdbcType=INTEGER},
+      </if>
+      <if test="record.state != null" >
+        `state` = #{record.state,jdbcType=TINYINT},
+      </if>
+      <if test="record.moduleId != null" >
+        module_id = #{record.moduleId,jdbcType=BIGINT},
+      </if>
+      <if test="record.programId != null" >
+        program_id = #{record.programId,jdbcType=BIGINT},
+      </if>
+      <if test="record.tags != null" >
+        tags = #{record.tags,jdbcType=VARCHAR},
+      </if>
+      <if test="record.versionId != null" >
+        version_id = #{record.versionId,jdbcType=BIGINT},
+      </if>
+      <if test="record.examples != null" >
+        examples = #{record.examples,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update `cfg_runtime_api`
+    set id = #{record.id,jdbcType=BIGINT},
+      `module` = #{record.module,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      `path` = #{record.path,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=INTEGER},
+      mtime = #{record.mtime,jdbcType=INTEGER},
+      valid_time = #{record.validTime,jdbcType=INTEGER},
+      invalid_time = #{record.invalidTime,jdbcType=INTEGER},
+      `state` = #{record.state,jdbcType=TINYINT},
+      module_id = #{record.moduleId,jdbcType=BIGINT},
+      program_id = #{record.programId,jdbcType=BIGINT},
+      tags = #{record.tags,jdbcType=VARCHAR},
+      version_id = #{record.versionId,jdbcType=BIGINT},
+      examples = #{record.examples,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_runtime_api`
+    set id = #{record.id,jdbcType=BIGINT},
+      `module` = #{record.module,jdbcType=VARCHAR},
+      `name` = #{record.name,jdbcType=VARCHAR},
+      title = #{record.title,jdbcType=VARCHAR},
+      description = #{record.description,jdbcType=VARCHAR},
+      `path` = #{record.path,jdbcType=VARCHAR},
+      version = #{record.version,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      ctime = #{record.ctime,jdbcType=INTEGER},
+      mtime = #{record.mtime,jdbcType=INTEGER},
+      valid_time = #{record.validTime,jdbcType=INTEGER},
+      invalid_time = #{record.invalidTime,jdbcType=INTEGER},
+      `state` = #{record.state,jdbcType=TINYINT},
+      module_id = #{record.moduleId,jdbcType=BIGINT},
+      program_id = #{record.programId,jdbcType=BIGINT},
+      tags = #{record.tags,jdbcType=VARCHAR},
+      version_id = #{record.versionId,jdbcType=BIGINT},
+      examples = #{record.examples,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.peacock.config.domain.model.CfgRuntimeApi" >
+    update `cfg_runtime_api`
+    <set >
+      <if test="module != null" >
+        `module` = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        `name` = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null" >
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="path != null" >
+        `path` = #{path,jdbcType=VARCHAR},
+      </if>
+      <if test="version != null" >
+        version = #{version,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="mtime != null" >
+        mtime = #{mtime,jdbcType=INTEGER},
+      </if>
+      <if test="validTime != null" >
+        valid_time = #{validTime,jdbcType=INTEGER},
+      </if>
+      <if test="invalidTime != null" >
+        invalid_time = #{invalidTime,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        `state` = #{state,jdbcType=TINYINT},
+      </if>
+      <if test="moduleId != null" >
+        module_id = #{moduleId,jdbcType=BIGINT},
+      </if>
+      <if test="programId != null" >
+        program_id = #{programId,jdbcType=BIGINT},
+      </if>
+      <if test="tags != null" >
+        tags = #{tags,jdbcType=VARCHAR},
+      </if>
+      <if test="versionId != null" >
+        version_id = #{versionId,jdbcType=BIGINT},
+      </if>
+      <if test="examples != null" >
+        examples = #{examples,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.hframework.peacock.config.domain.model.CfgRuntimeApi" >
+    update `cfg_runtime_api`
+    set `module` = #{module,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      `path` = #{path,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=INTEGER},
+      mtime = #{mtime,jdbcType=INTEGER},
+      valid_time = #{validTime,jdbcType=INTEGER},
+      invalid_time = #{invalidTime,jdbcType=INTEGER},
+      `state` = #{state,jdbcType=TINYINT},
+      module_id = #{moduleId,jdbcType=BIGINT},
+      program_id = #{programId,jdbcType=BIGINT},
+      tags = #{tags,jdbcType=VARCHAR},
+      version_id = #{versionId,jdbcType=BIGINT},
+      examples = #{examples,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.peacock.config.domain.model.CfgRuntimeApi" >
+    update `cfg_runtime_api`
+    set `module` = #{module,jdbcType=VARCHAR},
+      `name` = #{name,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      `path` = #{path,jdbcType=VARCHAR},
+      version = #{version,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      ctime = #{ctime,jdbcType=INTEGER},
+      mtime = #{mtime,jdbcType=INTEGER},
+      valid_time = #{validTime,jdbcType=INTEGER},
+      invalid_time = #{invalidTime,jdbcType=INTEGER},
+      `state` = #{state,jdbcType=TINYINT},
+      module_id = #{moduleId,jdbcType=BIGINT},
+      program_id = #{programId,jdbcType=BIGINT},
+      tags = #{tags,jdbcType=VARCHAR},
+      version_id = #{versionId,jdbcType=BIGINT},
+      examples = #{examples,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

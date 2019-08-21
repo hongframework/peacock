@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration status="OFF" >
+	<Properties>
+		<Property name="logs">logs</Property>
+		<Property name="pattern">%d{yyyy-MM-dd HH:mm:ss.SSS} %-5level [%t] %class{1.} (%M:%L) - %msg%n</Property>
+		<Property name="filePattern">%d{yyyy_MM_dd}_%i</Property>
+	</Properties>
+	<Appenders>
+		<Console name="console" target="SYSTEM_OUT">
+			<PatternLayout pattern="${pattern}"/>
+		</Console>
+		<RollingFile name="intercept_file" fileName="${logs}/intercept.log" filePattern="${logs}/intercept_${filePattern}.log">
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="ACCEPT"/>
+			<PatternLayout pattern="${pattern}"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" />
+				<SizeBasedTriggeringPolicy size="50 MB"/>
+			</Policies>
+		</RollingFile>
+		<RollingFile name="statistics_file" fileName="${logs}/statistics.log" filePattern="${logs}/statistics_${filePattern}.log">
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="ACCEPT"/>
+			<PatternLayout pattern="%msg%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="24" />
+				<SizeBasedTriggeringPolicy size="50 MB"/>
+			</Policies>
+		</RollingFile>
+		<RollingFile name="evaluate_file" fileName="${logs}/evaluate.log" filePattern="${logs}/evaluate_${filePattern}.log">
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="ACCEPT"/>
+			<PatternLayout pattern="%msg%n"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="24" />
+				<SizeBasedTriggeringPolicy size="50 MB"/>
+			</Policies>
+		</RollingFile>
+		<RollingFile name="abtest_file" fileName="${logs}/abtest.log" filePattern="${logs}/abtest_${filePattern}.log">
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="ACCEPT"/>
+			<PatternLayout pattern="${pattern}"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="24" />
+				<SizeBasedTriggeringPolicy size="50 MB"/>
+			</Policies>
+		</RollingFile>
+		<RollingFile name="debug_file" fileName="${logs}/debug.log" filePattern="${logs}/debug_${filePattern}.log">
+			<Filters>
+				<ThresholdFilter level="info" onMatch="DENY" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="debug" onMatch="ACCEPT" onMismatch="DENY"/>
+			</Filters>
+			<PatternLayout pattern="${pattern}"/>
+			<Policies>
+                <TimeBasedTriggeringPolicy interval="24"/>
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+			<!--<DefaultRolloverStrategy>-->
+				<!--<Delete basePath="${logs}" maxDepth="1">-->
+					<!--<IfFileName regex="(((debug)|(info)|(stdout)|(intercept)|(http)|(http_detail))[_0-9]*.log)|([_0-9]+.stderrout.log)" />-->
+					<!--<IfLastModified age="30d" />-->
+				<!--</Delete>-->
+			<!--</DefaultRolloverStrategy>-->
+		</RollingFile>
+		<RollingFile name="info_file" fileName="${logs}/info.log" filePattern="${logs}/info_${filePattern}.log">
+			<Filters>
+				<ThresholdFilter level="warn" onMatch="DENY" onMismatch="NEUTRAL"/>
+				<ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY"/>
+			</Filters>
+			<PatternLayout pattern="${pattern}"/>
+			<Policies>
+                <TimeBasedTriggeringPolicy interval="24" />
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+		</RollingFile>
+		<RollingFile name="error_file" fileName="${logs}/error.log" filePattern="${logs}/error_${filePattern}.log">
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="DENY"/>
+			<PatternLayout pattern="${pattern}"/>
+			<Policies>
+                <TimeBasedTriggeringPolicy interval="24" />
+                <SizeBasedTriggeringPolicy size="50 MB"/>
+            </Policies>
+		</RollingFile>
+		<RollingFile name="http_file" fileName="${logs}/http.log" filePattern="${logs}/http_${filePattern}.log">
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="ACCEPT"/>
+			<PatternLayout pattern="${pattern}"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" />
+				<SizeBasedTriggeringPolicy size="50 MB"/>
+			</Policies>
+		</RollingFile>
+		<RollingFile name="http_detail_file" fileName="${logs}/http_detail.log" filePattern="${logs}/http_detail_${filePattern}.log">
+			<ThresholdFilter level="warn" onMatch="ACCEPT" onMismatch="ACCEPT"/>
+			<PatternLayout pattern="${pattern}"/>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1" />
+				<SizeBasedTriggeringPolicy size="50 MB"/>
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<!-- 公共拦截器-日志记录  -->
+		<logger name="com.hframework.smartweb.LogHelper" level="debug" additivity="false">
+			<appender-ref ref="statistics_file"/>
+		</logger>
+		<logger name="com.hframework.springext.interceptor.SmartEvaluateLogInterceptor" level="debug" additivity="false">
+			<appender-ref ref="evaluate_file"/>
+		</logger>
+		<!-- 公共拦截器-日志记录  -->
+		<logger name="com.hframework.interceptors" level="debug" additivity="true">
+			<appender-ref ref="intercept_file"/>
+		</logger>
+
+		<logger name="com.hframework.peacock.parser.ExpressionConfigurationParser" level="debug" additivity="true">
+			<appender-ref ref="abtest_file"/>
+		</logger>
+		<logger name="com.hframework.peacock.filter" level="debug" additivity="true">
+			<appender-ref ref="abtest_file"/>
+		</logger>
+
+		<!-- http接口调用-日志记录  -->
+		<logger name="com.hframework.common.client.http" level="debug" additivity="true">
+			<appender-ref ref="http_file"/>
+			<appender-ref ref="http_detail_file"/>
+		</logger>
+		<logger name="org.apache.http" level="debug" additivity="false">
+			<appender-ref ref="http_detail_file"/>
+		</logger>
+		<Root level="info">
+			<Appender-ref ref="console" />
+			<Appender-ref ref="debug_file" />
+			<Appender-ref ref="info_file" />
+			<Appender-ref ref="error_file" />
+		</Root>
+	</Loggers>
+</configuration>
+

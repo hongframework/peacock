@@ -1,0 +1,17 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_consumer_DS4Q</code>
+  <entity>cfg_consumer</entity>
+  <name>API消费者【查询】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="input" is-key="true"/>
+    <field code="client_id" name="客户端访问Id" edit-type="input" not-null="true"/>
+    <field code="secret_key" name="客户端访问秘钥" edit-type="input" not-null="true"/>
+    <field code="remark" name="备注，记录消费者信息" edit-type="input"/>
+    <field code="ctime" name="创建时间" edit-type="input" not-null="true"/>
+    <field code="mtime" name="修改时间" edit-type="input"/>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="DEFAULT.BOOLEAN-NORMAL-DISABLE"/>
+    </field>
+  </fields>
+</dataset>

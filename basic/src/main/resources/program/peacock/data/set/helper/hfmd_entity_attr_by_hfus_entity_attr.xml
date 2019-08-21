@@ -1,0 +1,13 @@
+<helper>
+  <help-module>config</help-module>
+  <help-dataset>third_help_parameter</help-dataset>
+  <effect-module>config</effect-module>
+  <effect-dataset>third_domain_parameter</effect-dataset>
+  <help-datascore>status = 1</help-datascore>
+  <mappings>
+    <mapping help-dataset-field="id" effect-dataset-field="id"/>
+    <mapping help-dataset-field="name" effect-dataset-field="name"  is-compare-name="true" />
+    <mapping help-dataset-field="code" effect-dataset-field="code" is-compare-key="true"/>
+    <mapping help-dataset-field="visiable" effect-dataset-field="visiable"/>
+  </mappings>
+</helper>

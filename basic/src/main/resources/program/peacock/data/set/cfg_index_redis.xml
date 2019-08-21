@@ -1,0 +1,27 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_index_redis</code>
+  <entity>cfg_index_redis</entity>
+  <name>REDIS指标【默认】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="hidden" is-key="true">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>text</update-edit-type>     </field>
+    <field code="index_id" name="指标ID" edit-type="select" not-null="true">
+      <rel entity-code="cfg_index/id/name"/>
+    </field>
+    <field code="redis_id" name="REDIS ID" edit-type="select" not-null="true">
+      <rel entity-code="cfg_datasouce_redis/id/remark"/>
+    </field>
+    <field code="data_type" name="数据类型" edit-type="select">
+      <enum-class code="cfg_index_redis.data_type"/>
+    </field>
+    <field code="key_parts" name="主键组成部分" edit-type="input"/>
+    <field code="key_converter" name="KEY CONVERTER"  edit-type="select">
+      <enum-class code="cfg_index_redis.key_converter"/>
+    </field>
+    <field code="method" name="判断依据" edit-type="select">
+      <enum-class code="cfg_index_redis.method"/>
+    </field>
+    <field code="ctime" name="创建时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>text</update-edit-type>     </field>
+    <field code="mtime" name="修改时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>hidden</update-edit-type>     </field>
+  </fields>
+</dataset>

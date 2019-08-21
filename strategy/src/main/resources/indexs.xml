@@ -1,0 +1,138 @@
+<indexs>
+    <!-- 资产相关 -->
+    <index id="balance" name="账户余额">
+        <mysql host="${strategy.index.mysql.host.p2p}" port="${strategy.index.mysql.port.p2p}"
+               database="${strategy.index.mysql.database.p2p}" username="${strategy.index.mysql.username.p2p}"
+               password="${strategy.index.mysql.password.p2p}" table="firstb2b_user"  primary-key="id" column="money" />
+        <hbase zklist="zqh,wzk,zzy" zkport="2181" table="profile:user" family="data" qualifier="user_attribute_money" rowkey-converter="SHA256RowKeyConverter"/>
+    </index>
+    <index id="bonusBalance" name="红包余额">
+        <mysql host="${strategy.index.mysql.host.bonus}" port="${strategy.index.mysql.port.bonus}"
+               database="${strategy.index.mysql.database.bonus}" username="${strategy.index.mysql.username.bonus}"
+               password="${strategy.index.mysql.password.bonus}" primary-key="user_id" column="bonusBalance" > <![CDATA[
+             SELECT user_id, SUM(money) AS bonusBalance FROM bonus_receive WHERE user_id = ?;
+        ]]></mysql>
+    </index>
+    <index id="frozen" name="冻结金额">
+        <hbase zklist="${strategy.index.hbase.zkList.dataCenter}" zkport="${strategy.index.hbase.zkport.dataCenter}"
+               table="profile:user" family="data" qualifier="user_attribute_lock_money" rowkey-converter="SHA256RowKeyConverter"/>
+    </index>
+    <index id="investingAmount" name="在投金额">
+        <hbase zklist="${strategy.index.hbase.zkList.dataCenter}" zkport="${strategy.index.hbase.zkport.dataCenter}"
+               table="profile:user" family="data" qualifier="user_balance_loan_repay" rowkey-converter="SHA256RowKeyConverter"/>
+    </index>
+
+    <!-- 充值提现相关 -->
+    <index id="lastRechargeTime" name="最后一次充值时间">
+        <hbase zklist="${strategy.index.hbase.zkList.dataCenter}" zkport="${strategy.index.hbase.zkport.dataCenter}"
+               table="profile:user" family="data" qualifier="user_payment_last_time" rowkey-converter="SHA256RowKeyConverter"/>
+    </index>
+    <index id="lastWithdrawTime" name="最后一次提现时间">
+        <hbase zklist="${strategy.index.hbase.zkList.dataCenter}" zkport="${strategy.index.hbase.zkport.dataCenter}"
+               table="profile:user" family="data" qualifier="user_withdraw_last_time" rowkey-converter="SHA256RowKeyConverter"/>
+    </index>
+
+    <!-- 回款相关 -->
+    <index id="getCurrentRepayTimes" name="获取当前回款是第几次回款">
+        <mysql  host="${strategy.index.mysql.host.p2p}" port="${strategy.index.mysql.port.p2p}"
+                database="${strategy.index.mysql.database.p2p}" username="${strategy.index.mysql.username.p2p}"
+                password="${strategy.index.mysql.password.p2p}"  primary-key="loan_user_id" column="repayCount" > <![CDATA[
+             SELECT loan_user_id, COUNT(*) AS repayCount FROM firstb2b_deal_loan_repay  WHERE loan_user_id = $userId AND id <= $repayId AND status <> 0;
+        ]]></mysql>
+    </index>
+    <index id="getFutureRepayCount" name="获取待回款笔数">
+        <mysql host="${strategy.index.mysql.host.p2p}" port="${strategy.index.mysql.port.p2p}"
+               database="${strategy.index.mysql.database.p2p}" username="${strategy.index.mysql.username.p2p}"
+               password="${strategy.index.mysql.password.p2p}" primary-key="loan_user_id" column="repayCount" > <![CDATA[
+             SELECT loan_user_id, COUNT(*) AS repayCount FROM firstb2b_deal_loan_repay WHERE loan_user_id = $userId AND status = 0;
+        ]]></mysql>
+    </index>
+    <index id="getHistRepayCount" name="累计回款次数">
+        <mysql host="${strategy.index.mysql.host.p2p}" port="${strategy.index.mysql.port.p2p}"
+               database="${strategy.index.mysql.database.p2p}" username="${strategy.index.mysql.username.p2p}"
+               password="${strategy.index.mysql.password.p2p}" primary-key="loan_user_id" column="repayCount" > <![CDATA[
+             SELECT loan_user_id, COUNT(*) AS repayCount FROM firstb2b_deal_loan_repay  WHERE loan_user_id = $userId AND status <> 0;
+        ]]></mysql>
+    </index>
+    <index id="lastRefundTime" name="最后一次回款时间">
+        <hbase zklist="${strategy.index.hbase.zkList.dataCenter}" zkport="${strategy.index.hbase.zkport.dataCenter}"
+               table="profile:user" family="data" qualifier="user_repay_last_time" rowkey-converter="SHA256RowKeyConverter"/>
+    </index>
+
+    <!-- 投资相关 -->
+    <index id="totalInvestCount" name="累计投资次数">
+        <hbase zklist="${strategy.index.hbase.zkList.dataCenter}" zkport="${strategy.index.hbase.zkport.dataCenter}"
+               table="profile:user" family="data" qualifier="total_bid_count" rowkey-converter="SHA256RowKeyConverter"/>
+    </index>
+    <index id="totalYearInvestedAmount" name="累计年化投资额">
+        <hbase zklist="${strategy.index.hbase.zkList.dataCenter}" zkport="${strategy.index.hbase.zkport.dataCenter}"
+               table="profile:user" family="data" qualifier="total_bid_annual_money" rowkey-converter="SHA256RowKeyConverter"/>
+    </index>
+    <index id="lastInvestedTime" name="最后一次投资时间">
+        <hbase zklist="${strategy.index.hbase.zkList.dataCenter}" zkport="${strategy.index.hbase.zkport.dataCenter}"
+               table="profile:user" family="data" qualifier="last_bid_time" rowkey-converter="SHA256RowKeyConverter"/>
+    </index>
+
+    <!-- 数据相关 -->
+    <index id="isLossWarningUser" name="是否为流失预警用户">
+        <redis  host="${strategy.index.redis.host.peacock_data}" port="${strategy.index.redis.port.peacock_data}"
+                auth="${strategy.index.redis.auth.peacock_data}"  db="${strategy.index.redis.db.peacock_data}"
+                data-type="set" key-parts="liushi_predict" method="contain"></redis>
+    </index>
+    <index id="getHistBestInvestMoney" name="用户历史最优投资额">
+        <mysql  host="${strategy.index.mysql.host.peacock_data}" port="${strategy.index.mysql.port.peacock_data}"
+                database="${strategy.index.mysql.database.peacock_data}" username="${strategy.index.mysql.username.peacock_data}"
+                password="${strategy.index.mysql.password.peacock_data}" primary-key="user_id" column="money_out" > <![CDATA[
+             SELECT user_id, money_out FROM period_money_out_v2_peacock_data WHERE user_id = $userId ORDER BY logdate DESC LIMIT 1;
+        ]]></mysql>
+    </index>
+    <index id="getHistBestInvestPeriod" name="用户历史最优投资期限">
+        <mysql  host="${strategy.index.mysql.host.peacock_data}" port="${strategy.index.mysql.port.peacock_data}"
+                database="${strategy.index.mysql.database.peacock_data}" username="${strategy.index.mysql.username.peacock_data}"
+                password="${strategy.index.mysql.password.peacock_data}" primary-key="user_id" column="period_out" > <![CDATA[
+             SELECT user_id, period_out FROM period_money_out_v2_peacock_data WHERE user_id = $userId ORDER BY logdate DESC LIMIT 1;
+        ]]></mysql>
+    </index>
+    <index id="getHistLowInvestMoney" name="用户历史最低投资额">
+        <mysql  host="${strategy.index.mysql.host.peacock_data}" port="${strategy.index.mysql.port.peacock_data}"
+                database="${strategy.index.mysql.database.peacock_data}" username="${strategy.index.mysql.username.peacock_data}"
+                password="${strategy.index.mysql.password.peacock_data}" primary-key="user_id" column="money_low_amount_out" > <![CDATA[
+             SELECT user_id, money_low_amount_out FROM period_money_out_v2_peacock_data WHERE user_id = $userId ORDER BY logdate DESC LIMIT 1;
+        ]]></mysql>
+    </index>
+    <index id="getHistLowInvestPeriod" name="用户历史最低投资期限">
+        <mysql  host="${strategy.index.mysql.host.peacock_data}" port="${strategy.index.mysql.port.peacock_data}"
+                database="${strategy.index.mysql.database.peacock_data}" username="${strategy.index.mysql.username.peacock_data}"
+                password="${strategy.index.mysql.password.peacock_data}" primary-key="user_id" column="period_low_amount_out" > <![CDATA[
+             SELECT user_id, period_low_amount_out FROM period_money_out_v2_peacock_data WHERE user_id = $userId ORDER BY logdate DESC LIMIT 1;
+        ]]></mysql>
+    </index>
+    <index id="getHistShortInvestMoney" name="用户历史最短投资额">
+        <mysql  host="${strategy.index.mysql.host.peacock_data}" port="${strategy.index.mysql.port.peacock_data}"
+                database="${strategy.index.mysql.database.peacock_data}" username="${strategy.index.mysql.username.peacock_data}"
+                password="${strategy.index.mysql.password.peacock_data}" primary-key="user_id" column="money_short_period_out" > <![CDATA[
+             SELECT user_id, money_short_period_out FROM period_money_out_v2_peacock_data WHERE user_id = $userId ORDER BY logdate DESC LIMIT 1;
+        ]]></mysql>
+    </index>
+    <index id="getHistShortInvestPeriod" name="用户历史最短投资期限">
+        <mysql  host="${strategy.index.mysql.host.peacock_data}" port="${strategy.index.mysql.port.peacock_data}"
+                database="${strategy.index.mysql.database.peacock_data}" username="${strategy.index.mysql.username.peacock_data}"
+                password="${strategy.index.mysql.password.peacock_data}" primary-key="user_id" column="period_short_period_out" > <![CDATA[
+             SELECT user_id, period_short_period_out FROM period_money_out_v2_peacock_data WHERE user_id = $userId ORDER BY logdate DESC LIMIT 1;
+        ]]></mysql>
+    </index>
+    <!--<index id="lastLevel" name="上次用户评级">-->
+        <!--<mysql host="127.0.0.1" port="3306"  table="firstb2b_user"  primary-key="user_id" column="last_level" />-->
+    <!--</index>-->
+    <!--<index id="potentialValue" name="潜力值">-->
+        <!--<mysql host="127.0.0.1" port="3306" primary-key="user_id" column="last_level" > <![CDATA[-->
+                    <!--select * from firstb2b_user where-->
+                <!--]]>-->
+        <!--</mysql>-->
+    <!--</index>-->
+    <!--<index id="maxDayInvestingAmountOfSixMonth" name="近6月最高日在途">-->
+        <!--<redis  host="127.0.0.1" port="3306"  db="1" key-converter="SHA256RowKeyConverter"></redis>-->
+    <!--</index>-->
+    <!--<index id="planingRefundAmount" name="计划回款">-->
+    <!--</index>-->
+</indexs>

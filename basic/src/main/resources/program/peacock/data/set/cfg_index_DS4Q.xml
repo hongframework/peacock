@@ -1,0 +1,23 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_index_DS4Q</code>
+  <entity>cfg_index</entity>
+  <name>指标【查询】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="input" is-key="true"/>
+    <field code="code_LKE" name="指标编码" edit-type="input" not-null="true"/>
+    <field code="name_LKE" name="指标名称" edit-type="input" is-name="true" not-null="true"/>
+    <field code="remark" name="备注" edit-type="input"/>
+    <field code="features" name="特征" edit-type="select" not-null="true">
+      <rel entity-code="cfg_feature/id/name"/>
+    </field>
+    <field code="ctime" name="创建时间" edit-type="input" not-null="true"/>
+    <field code="mtime" name="修改时间" edit-type="input"/>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="cfg_index.state"/>
+    </field>
+    <field code="edit_features" name="编辑特征" edit-type="select">
+      <rel entity-code="cfg_feature/id/name"/>
+    </field>
+  </fields>
+</dataset>

@@ -1,0 +1,23 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_index_hbase</code>
+  <entity>cfg_index_hbase</entity>
+  <name>HBASE指标【默认】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="hidden" is-key="true">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>text</update-edit-type>     </field>
+    <field code="index_id" name="指标ID" edit-type="select" not-null="true">
+      <rel entity-code="cfg_index/id/name"/>
+    </field>
+    <field code="hbase_id" name="HBASE ID" edit-type="select" not-null="true">
+      <rel entity-code="cfg_datasouce_hbase/id/zklist"/>
+    </field>
+    <field code="table" name="表名" edit-type="input"/>
+    <field code="family" name="FAMILY" edit-type="input"/>
+    <field code="qualifier" name="QUALIFIER" edit-type="input"/>
+    <field code="rowkey_converter" name="ROWKEY CONVERTER" edit-type="select">
+      <enum-class code="cfg_index_hbase.rowkey_converter"/>
+    </field>
+    <field code="ctime" name="创建时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>text</update-edit-type>     </field>
+    <field code="mtime" name="修改时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>hidden</update-edit-type>     </field>
+  </fields>
+</dataset>

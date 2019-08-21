@@ -1,0 +1,47 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_runtime_api</code>
+  <entity>cfg_runtime_api</entity>
+  <name>动态API【默认】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="hidden" is-key="true">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>text</update-edit-type>     </field>
+    <field code="module" name="归属模块" edit-type="hidden" not-null="true"   show-type="hidden">
+      <enum-class code="cfg_runtime_api.module"/>
+    </field>
+    <field code="program_id" name="项目" edit-type="select" not-null="true">
+      <rel entity-code="cfg_mgr_program/id/name"/>
+    </field>
+    <field code="module_id" name="模块" edit-type="select" not-null="true">
+      <rel entity-code="cfg_mgr_module/id/name" rel-field="program_id"/>
+    </field>
+    <field code="version_id" name="发布版本" edit-type="select">
+      <rel entity-code="cfg_mgr_version/id/description" rel-field="program_id"/>
+    </field>
+    <field code="name" name="名称" edit-type="input" not-null="true"/>
+    <field code="title" name="标题" edit-type="input" not-null="true"/>
+    <field code="description" name="描述" edit-type="input"   show-type="hidden"/>
+    <field code="path" name="路径" edit-type="input"/>
+    <field code="version" name="API版本" edit-type="hidden" not-null="true" show-type="hidden"/>
+    <field code="examples" name="请求样例" edit-type="hidden"/>
+    <field code="content" name="配置内容" edit-type="hidden"  show-type="hidden"/>
+    <field code="remark" name="备注" edit-type="hidden" show-type="hidden"/>
+    <field code="ctime" name="创建时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="mtime" name="修改时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+    <field code="valid_time" name="生效时间" edit-type="input"/>
+    <field code="invalid_time" name="失效时间" edit-type="input"/>
+    <field code="state" name="状态" edit-type="hidden" not-null="true">
+      <enum-class code="cfg_runtime_api.state"/>
+    </field>
+
+    <field code="tags" name="标签" edit-type="select">
+      <enum-class code="cfg_runtime_api.tags"/>
+    </field>
+
+  </fields>
+</dataset>

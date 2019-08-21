@@ -1,0 +1,466 @@
+<module code="config">
+
+  <page id="cfg_api_def_mgr" name="API定义表管理" page-template="qlist" data-set="config/cfg_api_def">
+    <component id="qForm" data-set="config/cfg_api_def_DS4Q"/>
+  </page>
+  <page id="cfg_api_def_create" name="API定义表创建" page-template="create" data-set="config/cfg_api_def" rel-page="cfg_api_def_mgr"/>
+  <page id="cfg_api_def_edit" name="API定义表修改" page-template="edit" data-set="config/cfg_api_def" rel-page="cfg_api_def_mgr"/>
+  <page id="cfg_api_def_detail" name="API定义表明细" page-template="edit" data-set="config/cfg_api_def" rel-page="cfg_api_def_mgr"/>
+  <page id="cfg_api_conf_mgr" name="API配置表管理" page-template="qlist" data-set="config/cfg_api_conf">
+    <component id="qForm" data-set="config/cfg_api_conf_DS4Q"/>
+  </page>
+  <page id="cfg_api_conf_create" name="API配置表创建" page-template="create" data-set="config/cfg_api_conf" rel-page="cfg_api_conf_mgr"/>
+  <page id="cfg_api_conf_edit" name="API配置表修改" page-template="edit" data-set="config/cfg_api_conf" rel-page="cfg_api_conf_mgr"/>
+  <page id="cfg_api_conf_detail" name="API配置表明细" page-template="edit" data-set="config/cfg_api_conf" rel-page="cfg_api_conf_mgr"/>
+  <page id="cfg_consumer_mgr" name="API消费者管理" page-template="qlist" data-set="config/cfg_consumer">
+    <component id="qForm" data-set="config/cfg_consumer_DS4Q"/>
+  </page>
+  <page id="cfg_consumer_create" name="API消费者添加" page-template="cComb" data-set="config/cfg_consumer" rel-page="cfg_consumer_mgr">
+    <component id="cForm" data-set="config/cfg_consumer"/>
+    <component id="cList" data-set="config/cfg_consumer_auth"/>
+  </page>
+  <page id="cfg_consumer_edit" name="API消费者修改" page-template="eComb" data-set="config/cfg_consumer" rel-page="cfg_consumer_mgr">
+    <component id="eForm" data-set="config/cfg_consumer"/>
+    <component id="eList" data-set="config/cfg_consumer_auth"/>
+  </page>
+  <page id="cfg_consumer_detail" name="API消费者查看" page-template="dComb" data-set="config/cfg_consumer" rel-page="cfg_consumer_mgr">
+    <component id="dForm" data-set="config/cfg_consumer"/>
+    <component id="qList" data-set="config/cfg_consumer_auth"/>
+  </page>
+  <page id="cfg_datasouce_mysql_mgr" name="MYSQL管理" page-template="qlist" data-set="config/cfg_datasouce_mysql">
+    <component id="qForm" data-set="config/cfg_datasouce_mysql_DS4Q"/>
+  </page>
+  <page id="cfg_datasouce_mysql_create" name="MYSQL创建" page-template="create" data-set="config/cfg_datasouce_mysql" rel-page="cfg_datasouce_mysql_mgr"/>
+  <page id="cfg_datasouce_mysql_edit" name="MYSQL修改" page-template="edit" data-set="config/cfg_datasouce_mysql" rel-page="cfg_datasouce_mysql_mgr"/>
+  <page id="cfg_datasouce_mysql_detail" name="MYSQL明细" page-template="edit" data-set="config/cfg_datasouce_mysql" rel-page="cfg_datasouce_mysql_mgr"/>
+  <page id="cfg_datasouce_hbase_mgr" name="HBASE管理" page-template="qlist" data-set="config/cfg_datasouce_hbase">
+    <component id="qForm" data-set="config/cfg_datasouce_hbase_DS4Q"/>
+  </page>
+  <page id="cfg_datasouce_hbase_create" name="HBASE创建" page-template="create" data-set="config/cfg_datasouce_hbase" rel-page="cfg_datasouce_hbase_mgr"/>
+  <page id="cfg_datasouce_hbase_edit" name="HBASE修改" page-template="edit" data-set="config/cfg_datasouce_hbase" rel-page="cfg_datasouce_hbase_mgr"/>
+  <page id="cfg_datasouce_hbase_detail" name="HBASE明细" page-template="edit" data-set="config/cfg_datasouce_hbase" rel-page="cfg_datasouce_hbase_mgr"/>
+  <page id="cfg_datasouce_redis_mgr" name="REDIS管理" page-template="qlist" data-set="config/cfg_datasouce_redis">
+    <component id="qForm" data-set="config/cfg_datasouce_redis_DS4Q"/>
+  </page>
+  <page id="cfg_datasouce_redis_create" name="REDIS创建" page-template="create" data-set="config/cfg_datasouce_redis" rel-page="cfg_datasouce_redis_mgr"/>
+  <page id="cfg_datasouce_redis_edit" name="REDIS修改" page-template="edit" data-set="config/cfg_datasouce_redis" rel-page="cfg_datasouce_redis_mgr"/>
+  <page id="cfg_datasouce_redis_detail" name="REDIS明细" page-template="edit" data-set="config/cfg_datasouce_redis" rel-page="cfg_datasouce_redis_mgr"/>
+  <page id="cfg_feature_mgr" name="特征管理" page-template="qlist" data-set="config/cfg_feature">
+    <component id="qForm" data-set="config/cfg_feature_DS4Q"/>
+  </page>
+  <page id="cfg_feature_create" name="特征创建" page-template="create" data-set="config/cfg_feature" rel-page="cfg_feature_mgr"/>
+  <page id="cfg_feature_edit" name="特征修改" page-template="edit" data-set="config/cfg_feature" rel-page="cfg_feature_mgr"/>
+  <page id="cfg_feature_detail" name="特征明细" page-template="edit" data-set="config/cfg_feature" rel-page="cfg_feature_mgr"/>
+  <page id="cfg_index_mgr" name="指标管理" page-template="qlist" data-set="config/cfg_index" sub-data-sets="config/cfg_index_mysql,config/cfg_index_hbase,config/cfg_index_redis">
+    <component id="qForm" data-set="config/cfg_index_DS4Q"/>
+  </page>
+  <page id="cfg_index_create" name="指标添加" page-template="dynamic" data-set="config/cfg_index" rel-page="cfg_index_mgr">
+    <component id="cForm" data-set="config/cfg_index" event-extend="false"/>
+    <component id="cForm" data-set="config/cfg_index_mysql" event-extend="false"  show-title="false"/>
+    <component id="cForm" data-set="config/cfg_index_hbase" event-extend="false"  show-title="false"/>
+    <component id="cForm" data-set="config/cfg_index_redis" event-extend="false"  show-title="false"/>
+    <component id="qList" data-set="SYSTEM_EMPTY_DATASET"  show-title="false">
+      <event name="save">
+        <attach anchor="BOFC">
+          <appendElement type="button" param='{btnclass:"btn-primary switch-button",btnText:"MYSQL指标"}'></appendElement>
+        </attach>
+        <effect type="componentControl" target-id="cForm[2]" param='{visible:"auto", event:"toggle", show_condition:"IS_NOT_EMPTY"}'></effect>
+      </event>
+      <event name="save">
+        <attach anchor="BOFC">
+          <appendElement type="button" param='{btnclass:"btn-primary switch-button",btnText:"HBASE指标"}'></appendElement>
+        </attach>
+        <effect type="componentControl" target-id="cForm[3]" param='{visible:"auto", event:"toggle", show_condition:"IS_NOT_EMPTY"}'></effect>
+      </event>
+      <event name="save">
+        <attach anchor="BOFC">
+          <appendElement type="button" param='{btnclass:"btn-primary switch-button",btnText:"REDIS指标"}'></appendElement>
+        </attach>
+        <effect type="componentControl" target-id="cForm[4]" param='{visible:"auto", event:"toggle", show_condition:"IS_NOT_EMPTY"}'></effect>
+      </event>
+      <event name="submit" description="提交">
+        <attach anchor="BOFC">
+          <appendElement type="button" param='{btnclass:"btn-primary",btnText:" 提 交 "}'></appendElement>
+        </attach>
+        <source scope="EOC" param="thisForm"></source>
+        <effect type="ajaxSubmitByJson" action="ajaxSubmits.json" target-id="cForm"></effect>
+        <effect type="pageFwd" action='${cForm:mgr}' isStack="true"></effect>
+      </event>
+    </component>
+  </page>
+  <page id="cfg_index_edit" name="指标修改" page-template="dynamic" data-set="config/cfg_index" rel-page="cfg_index_mgr">
+    <component id="eForm" data-set="config/cfg_index"/>
+    <component id="eForm" data-set="config/cfg_index_mysql"/>
+    <component id="eForm" data-set="config/cfg_index_hbase"/>
+    <component id="eForm" data-set="config/cfg_index_redis"/>
+    <component id="qList" data-set="SYSTEM_EMPTY_DATASET"  show-title="false">
+      <event name="save">
+        <attach anchor="BOFC">
+          <appendElement type="button" param='{btnclass:"btn-primary switch-button",btnText:"MYSQL指标"}'></appendElement>
+        </attach>
+        <effect type="componentControl" target-id="eForm[2]" param='{visible:"auto", event:"toggle", show_condition:"IS_NOT_EMPTY"}'></effect>
+      </event>
+      <event name="save">
+        <attach anchor="BOFC">
+          <appendElement type="button" param='{btnclass:"btn-primary switch-button",btnText:"HBASE指标"}'></appendElement>
+        </attach>
+        <effect type="componentControl" target-id="eForm[3]" param='{visible:"auto", event:"toggle", show_condition:"IS_NOT_EMPTY"}'></effect>
+      </event>
+      <event name="save">
+        <attach anchor="BOFC">
+          <appendElement type="button" param='{btnclass:"btn-primary switch-button",btnText:"REDIS指标"}'></appendElement>
+        </attach>
+        <effect type="componentControl" target-id="eForm[4]" param='{visible:"auto", event:"toggle", show_condition:"IS_NOT_EMPTY"}'></effect>
+      </event>
+      <event name="submit" description="提交">
+        <attach anchor="BOFC">
+          <appendElement type="button" param='{btnclass:"btn-primary",btnText:" 提 交 "}'></appendElement>
+        </attach>
+        <source scope="EOC" param="thisForm"></source>
+        <effect type="ajaxSubmitByJson" action="ajaxSubmits.json" target-id="eForm"></effect>
+        <effect type="pageFwd" action='${eForm:mgr}' isStack="true"></effect>
+      </event>
+    </component>
+  </page>
+  <page id="cfg_index_detail" name="指标查看" page-template="dynamic" data-set="config/cfg_index" rel-page="cfg_index_mgr">
+    <component id="dForm" data-set="config/cfg_index"/>
+    <component id="dForm" data-set="config/cfg_index_mysql"/>
+    <component id="dForm" data-set="config/cfg_index_hbase"/>
+    <component id="dForm" data-set="config/cfg_index_redis"/>
+  </page>
+  <page id="cfg_runtime_rule_mgr" name="动态规则管理" page-template="qlist" data-set="config/cfg_runtime_rule">
+    <component id="qForm" data-set="config/cfg_runtime_rule_DS4Q"/>
+    <component id="qList" data-set="config/cfg_runtime_rule">
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-success",iconclass:"icon-edit"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="id={id}"></source>
+        <effect type="pageFwd" action='/config/cfg_runtime_rule_expressedit.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+    </component>
+  </page>
+  <page  id="cfg_runtime_rule_expressedit" name="自定义规则编辑" page-template="dynamic" vmpath="rule-edit.vm">
+    <component  id="virtualComponent" data-set="SYSTEM_EMPTY_DATASET"   path="rule-edit.vm" dataid="DATA-SET-REL://cfg_runtime_rule/expresssion/id"></component>
+  </page>
+  <page id="cfg_runtime_rule_create" name="动态规则创建" page-template="create" data-set="config/cfg_runtime_rule" rel-page="cfg_runtime_rule_mgr"/>
+  <page id="cfg_runtime_rule_edit" name="动态规则修改" page-template="edit" data-set="config/cfg_runtime_rule" rel-page="cfg_runtime_rule_mgr"/>
+  <page id="cfg_runtime_rule_detail" name="动态规则明细" page-template="edit" data-set="config/cfg_runtime_rule" rel-page="cfg_runtime_rule_mgr"/>
+  <page id="cfg_runtime_api_mgr" name="动态API管理" page-template="qlist" data-set="config/cfg_runtime_api">
+    <component id="qForm" data-set="config/cfg_runtime_api_DS4Q"/>
+    <component id="qList" data-set="config/cfg_runtime_api"   event-extend="false">
+      <event rel="#EOFR.goto.edit"/>
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-success",iconclass:"icon-cogs"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="id={id}&amp;programId={programId}&amp;pathEnding={name}"></source>
+        <effect type="pageFwd" action='/config/cfg_runtime_api_xmleditor.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+      <event name="goto">
+        <pre-handle case="state" when="0" then="1"></pre-handle>
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-warning",iconclass:"icon-ok-sign"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="${id}"></source>
+        <effect type="confirm" content="是否提测 &lt;span style=&quot;color:red&quot;&gt;{${name}}&lt;/span&gt; API?"></effect>
+        <effect type="ajaxSubmit" action="${updateByAjax}"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+      <event name="goto">
+        <pre-handle case="state" when="1" then="4"></pre-handle>
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-danger",iconclass:"icon-remove-sign"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="${id}"></source>
+        <effect type="confirm" content="是失效 &lt;span style=&quot;color:red&quot;&gt;{${name}}&lt;/span&gt; API?"></effect>
+        <effect type="ajaxSubmit" action="${updateByAjax}"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+      <event rel="#EOFR.confirm.delete"/>
+      <event rel="#BOFC.goto.create"/>
+    </component>
+  </page>
+  <page id="cfg_runtime_api_xmleditor" name="动态API编辑" page-template="container">
+    <component id="container" data-set="hffile/peacock_api_xeditor"  dataid="DATA-SET-REL://cfg_runtime_api/content/id" />
+  </page>
+  <page id="cfg_runtime_api_create" name="动态API创建" page-template="create" data-set="config/cfg_runtime_api" rel-page="cfg_runtime_api_mgr"/>
+  <page id="cfg_runtime_api_edit" name="动态API修改" page-template="edit" data-set="config/cfg_runtime_api" rel-page="cfg_runtime_api_mgr"/>
+  <page id="cfg_runtime_api_detail" name="动态API明细" page-template="edit" data-set="config/cfg_runtime_api" rel-page="cfg_runtime_api_mgr"/>
+  <page id="cfg_runtime_handler_mgr" name="动态Handler管理" page-template="qlist" data-set="config/cfg_runtime_handler">
+    <component id="qForm" data-set="config/cfg_runtime_handler_DS4Q"/>
+    <component id="qList" data-set="config/cfg_runtime_handler"  event-extend="false">
+      <event rel="#EOFR.goto.edit"/>
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-success",iconclass:"icon-cogs"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="id={id}&amp;programId={programId}&amp;pathEnding={name}"></source>
+        <effect type="pageFwd" action='/config/cfg_runtime_handler_xmleditor.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+      <event name="goto">
+        <pre-handle case="state" when="0" then="1"></pre-handle>
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-warning",iconclass:"icon-ok-sign"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="${id}"></source>
+        <effect type="confirm" content="是否提测 &lt;span style=&quot;color:red&quot;&gt;{${name}}&lt;/span&gt; API?"></effect>
+        <effect type="ajaxSubmit" action="${updateByAjax}"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+      <event name="goto">
+        <pre-handle case="state" when="1" then="4"></pre-handle>
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-danger",iconclass:"icon-remove-sign"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="${id}"></source>
+        <effect type="confirm" content="是失效 &lt;span style=&quot;color:red&quot;&gt;{${name}}&lt;/span&gt; Handler?"></effect>
+        <effect type="ajaxSubmit" action="${updateByAjax}"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+      <event rel="#EOFR.confirm.delete"/>
+      <event rel="#BOFC.goto.create"/>
+    </component>
+  </page>
+  <page id="cfg_runtime_handler_xmleditor" name="动态Handler编辑" page-template="container">
+    <component id="container" data-set="hffile/peacock_api_xeditor"  dataid="DATA-SET-REL://cfg_runtime_handler/content/id" />
+  </page>
+  <page id="cfg_runtime_handler_create" name="动态Handler创建" page-template="create" data-set="config/cfg_runtime_handler" rel-page="cfg_runtime_handler_mgr"/>
+  <page id="cfg_runtime_handler_edit" name="动态Handler修改" page-template="edit" data-set="config/cfg_runtime_handler" rel-page="cfg_runtime_handler_mgr"/>
+  <page id="cfg_runtime_handler_detail" name="动态Handler明细" page-template="edit" data-set="config/cfg_runtime_handler" rel-page="cfg_runtime_handler_mgr"/>
+
+  <page id="third_domain_mgr" name="访问域管理" page-template="qlist" data-set="config/third_domain">
+    <component id="qForm" data-set="config/third_domain_DS4Q"/>
+    <component id="qList" data-set="config/third_domain">
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-info",iconclass:"icon-key"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="domainId={id}"></source>
+        <effect type="pageFwd" action='/config/third_domain_parameter_edit.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-info",iconclass:"icon-signin"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="domainId={id}"></source>
+        <effect type="pageFwd" action='/config/third_pub_request_edit.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-info",iconclass:"icon-signout"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="domainId={id}"></source>
+        <effect type="pageFwd" action='/config/third_pub_response_edit.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+        <event name="goto">
+            <attach anchor="EOFR">
+                <appendElement type="icon" param='{fillclass:"btn-warning",iconclass:"icon-cogs"}'></appendElement>
+            </attach>
+            <source scope="CROW" param="id={id}"></source>
+            <effect type="pageFwd" action='/config/third_domain_testing.html' isStack="true"></effect>
+            <effect type="component.reload"></effect>
+        </event>
+    </component>
+  </page>
+  <page  id="third_domain_testing" name="三方接口在线测试" page-template="dynamic" vmpath="third-api-test.vm">
+    <component  id="virtualComponent" data-set="SYSTEM_EMPTY_DATASET"   path="third-api-test.vm" dataid="DATA-SET-REL://third_domain/id/id"></component>
+  </page>
+  <page id="third_domain_create" name="访问域添加" page-template="cComb" data-set="config/third_domain" rel-page="third_domain_mgr">
+    <component id="cForm" data-set="config/third_domain"/>
+    <component id="cList" data-set="config/third_domain_parameter"/>
+  </page>
+  <page id="third_domain_edit" name="访问域修改" page-template="eComb" data-set="config/third_domain" rel-page="third_domain_mgr">
+    <component id="eForm" data-set="config/third_domain"/>
+    <component id="eList" data-set="config/third_domain_parameter"/>
+  </page>
+  <page id="third_domain_detail" name="访问域查看" page-template="dComb" data-set="config/third_domain" rel-page="third_domain_mgr">
+    <component id="dForm" data-set="config/third_domain"/>
+    <component id="qList" data-set="config/third_domain_parameter"/>
+  </page>
+  <page id="third_domain_parameter_edit" name="访问域参数维护" page-template="elist" data-set="config/third_domain_parameter"></page>
+  <page id="third_pub_request_edit" name="公共请求参数维护" page-template="elist" data-set="config/third_pub_request"></page>
+  <page id="third_pub_response_edit" name="公共响应参数维护" page-template="elist" data-set="config/third_pub_response"></page>
+
+
+  <page id="third_public_rule_mgr" name="公共规则管理" page-template="qlist" data-set="config/third_public_rule">
+    <component id="qForm" data-set="config/third_public_rule_DS4Q"/>
+  </page>
+  <page id="third_public_rule_create" name="公共规则创建" page-template="create" data-set="config/third_public_rule" rel-page="third_public_rule_mgr"/>
+  <page id="third_public_rule_edit" name="公共规则修改" page-template="edit" data-set="config/third_public_rule" rel-page="third_public_rule_mgr"/>
+  <page id="third_public_rule_detail" name="公共规则明细" page-template="edit" data-set="config/third_public_rule" rel-page="third_public_rule_mgr"/>
+
+  <page id="third_common_parameter_mgr" name="通用参数管理" page-template="qlist" data-set="config/third_common_parameter">
+    <component id="qForm" data-set="config/third_common_parameter_DS4Q"/>
+  </page>
+  <page id="third_common_parameter_create" name="通用参数创建" page-template="create" data-set="config/third_common_parameter" rel-page="third_common_parameter_mgr"/>
+  <page id="third_common_parameter_edit" name="通用参数修改" page-template="edit" data-set="config/third_common_parameter" rel-page="third_common_parameter_mgr"/>
+  <page id="third_common_parameter_detail" name="通用参数明细" page-template="edit" data-set="config/third_common_parameter" rel-page="third_common_parameter_mgr"/>
+
+  <page id="third_api_mgr" name="访问API管理" page-template="qlist" data-set="config/third_api">
+    <component id="qForm" data-set="config/third_api_DS4Q"/>
+    <component id="qList" data-set="config/third_api">
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-warning",iconclass:"icon-cogs"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="id={id}"></source>
+        <effect type="pageFwd" action='/config/third_api_testing.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+    </component>
+  </page>
+  <page  id="third_api_testing" name="三方接口在线测试" page-template="dynamic" vmpath="third-api-test.vm">
+    <component  id="virtualComponent" data-set="SYSTEM_EMPTY_DATASET"   path="third-api-test.vm" dataid="DATA-SET-REL://third_api/domain_id/id"></component>
+  </page>
+
+  <page id="third_api_create" name="访问API创建" page-template="create" data-set="config/third_api" rel-page="third_api_mgr"/>
+  <page id="third_api_edit" name="访问API修改" page-template="edit" data-set="config/third_api" rel-page="third_api_mgr"/>
+  <page id="third_api_detail" name="访问API明细" page-template="edit" data-set="config/third_api" rel-page="third_api_mgr"/>
+  <page id="third_pub_request_mgr" name="公共请求参数管理" page-template="qlist" data-set="config/third_pub_request">
+    <component id="qForm" data-set="config/third_pub_request_DS4Q"/>
+  </page>
+  <page id="third_pub_request_create" name="公共请求参数创建" page-template="create" data-set="config/third_pub_request" rel-page="third_pub_request_mgr"/>
+  <!--<page id="third_pub_request_edit" name="公共请求参数修改" page-template="edit" data-set="config/third_pub_request" rel-page="third_pub_request_mgr"/>-->
+  <page id="third_pub_request_detail" name="公共请求参数明细" page-template="edit" data-set="config/third_pub_request" rel-page="third_pub_request_mgr"/>
+  <page id="third_pub_response_mgr" name="公共响应参数管理" page-template="qlist" data-set="config/third_pub_response">
+    <component id="qForm" data-set="config/third_pub_response_DS4Q"/>
+  </page>
+  <page id="third_pub_response_create" name="公共响应参数创建" page-template="create" data-set="config/third_pub_response" rel-page="third_pub_response_mgr"/>
+  <!--<page id="third_pub_response_edit" name="公共响应参数修改" page-template="edit" data-set="config/third_pub_response" rel-page="third_pub_response_mgr"/>-->
+  <page id="third_pub_response_detail" name="公共响应参数明细" page-template="edit" data-set="config/third_pub_response" rel-page="third_pub_response_mgr"/>
+
+  <page id="api-doc-manager" name="API文档" page-template="qlist" data-set="config/cfg_mgr_program">
+    <component id="qForm" data-set="config/cfg_mgr_program_DS4Q"/>
+    <component id="qList" data-set="config/cfg_mgr_program" event-extend="absolute_false">
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-info",iconclass:"icon-book"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="programId={id}"></source>
+        <effect type="pageFwd" action='/apidoc.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+    </component>
+  </page>
+  <page id="handler-doc-manager" name="HANDLER文档" page-template="qlist" data-set="config/cfg_mgr_program">
+    <component id="qForm" data-set="config/cfg_mgr_program_DS4Q"/>
+    <component id="qList" data-set="config/cfg_mgr_program" event-extend="absolute_false">
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-info",iconclass:"icon-book"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="programId={id}"></source>
+        <effect type="pageFwd" action='/handlerdoc.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+    </component>
+  </page>
+
+  <page id="cfg_mgr_program_mgr" name="项目管理" page-template="qlist" data-set="config/cfg_mgr_program">
+    <component id="qForm" data-set="config/cfg_mgr_program_DS4Q"/>
+    <component id="qList" data-set="config/cfg_mgr_program">
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-info",iconclass:"icon-sitemap"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="programId={id}"></source>
+        <effect type="pageFwd" action='/config/cfg_mgr_module_edit.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-info",iconclass:"icon-heart"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="programId={id}"></source>
+        <effect type="pageFwd" action='/config/cfg_runtime_parameter_edit.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-info",iconclass:"icon-signout"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="programId={id}"></source>
+        <effect type="pageFwd" action='/config/cfg_runtime_response_edit.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+      <event name="goto">
+        <attach anchor="EOFR">
+          <appendElement type="icon" param='{fillclass:"btn-warning",iconclass:"icon-flag"}'></appendElement>
+        </attach>
+        <source scope="CROW" param="programId={id}"></source>
+        <effect type="pageFwd" action='/config/cfg_mgr_version_edit.html' isStack="true"></effect>
+        <effect type="component.reload"></effect>
+      </event>
+
+    </component>
+  </page>
+  <page id="cfg_mgr_program_create" name="项目创建" page-template="create" data-set="config/cfg_mgr_program" rel-page="cfg_mgr_program_mgr"/>
+  <page id="cfg_mgr_program_edit" name="项目修改" page-template="edit" data-set="config/cfg_mgr_program" rel-page="cfg_mgr_program_mgr"/>
+  <page id="cfg_mgr_program_detail" name="项目明细" page-template="edit" data-set="config/cfg_mgr_program" rel-page="cfg_mgr_program_mgr"/>
+  <!--<page id="cfg_mgr_module_mgr" name="模块管理" page-template="qlist" data-set="config/cfg_mgr_module">-->
+    <!--<component id="qForm" data-set="config/cfg_mgr_module_DS4Q"/>-->
+  <!--</page>-->
+  <!--<page id="cfg_mgr_module_create" name="模块创建" page-template="create" data-set="config/cfg_mgr_module" rel-page="cfg_mgr_module_mgr"/>-->
+  <page id="cfg_mgr_module_edit" name="模块修改" page-template="elist" data-set="config/cfg_mgr_module" rel-page="cfg_mgr_module_mgr"/>
+  <page id="cfg_mgr_module_detail" name="模块明细" page-template="edit" data-set="config/cfg_mgr_module" rel-page="cfg_mgr_module_mgr"/>
+
+  <page id="cfg_runtime_response_edit" name="响应参数修改" page-template="elist" data-set="config/cfg_runtime_response" rel-page="cfg_mgr_module_mgr"/>
+  <page id="cfg_runtime_parameter_edit" name="公共参数修改" page-template="elist" data-set="config/cfg_runtime_parameter" rel-page="cfg_mgr_module_mgr"/>
+  <page id="cfg_mgr_version_edit" name="发布版本修改" page-template="elist" data-set="config/cfg_mgr_version" rel-page="cfg_mgr_module_mgr"/>
+
+  <page id="cfg_static_expander_mgr" name="静态扩展器管理" page-template="qlist" data-set="config/cfg_static_expander">
+    <component id="qForm" data-set="config/cfg_static_expander_DS4Q"/>
+  </page>
+  <page id="cfg_static_expander_create" name="静态扩展器添加" page-template="cComb" data-set="config/cfg_static_expander" rel-page="cfg_static_expander_mgr">
+    <component id="cForm" data-set="config/cfg_static_expander"/>
+    <component id="cList" data-set="config/cfg_static_expander_parameter"/>
+  </page>
+  <page id="cfg_static_expander_edit" name="静态扩展器修改" page-template="eComb" data-set="config/cfg_static_expander" rel-page="cfg_static_expander_mgr">
+    <component id="eForm" data-set="config/cfg_static_expander"/>
+    <component id="eList" data-set="config/cfg_static_expander_parameter"/>
+  </page>
+  <page id="cfg_static_expander_detail" name="静态扩展器查看" page-template="dComb" data-set="config/cfg_static_expander" rel-page="cfg_static_expander_mgr">
+    <component id="dForm" data-set="config/cfg_static_expander"/>
+    <component id="qList" data-set="config/cfg_static_expander_parameter"/>
+  </page>
+  <page id="cfg_node_mgr" name="节点管理" page-template="qlist" data-set="config/cfg_node">
+    <component id="qForm" data-set="config/cfg_node_DS4Q"/>
+  </page>
+  <page id="cfg_node_create" name="节点创建" page-template="create" data-set="config/cfg_node" rel-page="cfg_node_mgr"/>
+  <page id="cfg_node_edit" name="节点修改" page-template="edit" data-set="config/cfg_node" rel-page="cfg_node_mgr"/>
+  <page id="cfg_node_detail" name="节点明细" page-template="edit" data-set="config/cfg_node" rel-page="cfg_node_mgr"/>
+
+  <page id="cfg_runtime_trace_mgr" name="链路采集管理" page-template="qlist" data-set="config/cfg_runtime_trace">
+    <component id="qForm" data-set="config/cfg_runtime_trace_DS4Q"/>
+  </page>
+  <page id="cfg_runtime_trace_create" name="链路采集创建" page-template="create" data-set="config/cfg_runtime_trace" rel-page="cfg_runtime_trace_mgr"/>
+  <page id="cfg_runtime_trace_edit" name="链路采集修改" page-template="edit" data-set="config/cfg_runtime_trace" rel-page="cfg_runtime_trace_mgr"/>
+  <page id="cfg_runtime_trace_detail" name="链路采集明细" page-template="edit" data-set="config/cfg_runtime_trace" rel-page="cfg_runtime_trace_mgr"/>
+
+
+
+
+  <page id="cfg_runtime_dictionary_mgr" name="API字典管理" page-template="qlist" data-set="config/cfg_runtime_dictionary">
+    <component id="qForm" data-set="config/cfg_runtime_dictionary_DS4Q"/>
+  </page>
+  <page id="cfg_runtime_dictionary_create" name="API字典添加" page-template="cComb" data-set="config/cfg_runtime_dictionary" rel-page="cfg_runtime_dictionary_mgr">
+    <component id="cForm" data-set="config/cfg_runtime_dictionary"/>
+    <component id="cList" data-set="config/cfg_runtime_dictionary_items"/>
+  </page>
+  <page id="cfg_runtime_dictionary_edit" name="API字典修改" page-template="eComb" data-set="config/cfg_runtime_dictionary" rel-page="cfg_runtime_dictionary_mgr">
+    <component id="eForm" data-set="config/cfg_runtime_dictionary"/>
+    <component id="eList" data-set="config/cfg_runtime_dictionary_items"/>
+  </page>
+  <page id="cfg_runtime_dictionary_detail" name="API字典查看" page-template="dComb" data-set="config/cfg_runtime_dictionary" rel-page="cfg_runtime_dictionary_mgr">
+    <component id="dForm" data-set="config/cfg_runtime_dictionary"/>
+    <component id="qList" data-set="config/cfg_runtime_dictionary_items"/>
+  </page>
+
+</module>

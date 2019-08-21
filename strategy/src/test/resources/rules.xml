@@ -1,0 +1,81 @@
+<rules>
+    <rule code="Age" name="年龄评分" version="1.0.0" returnType="Float">
+        <description>根据年龄返回评分</description>
+        <expression>
+            <![CDATA[
+                if($age >= 25 && $age < 40):
+                  10
+                elseif(($age > 20 && $age <= 25) || ($age >= 40 && $age < 45)):
+                  8
+                elseif($age > 15 && $age < 50):
+                  6
+                else:
+                  4
+            ]]>
+        </expression>
+    </rule>
+
+    <rule code="Area" name="地域评分" version="1.0.0" returnType="Float">
+        <description>根据年龄返回评分</description>
+        <expression>
+
+            <![CDATA[
+                if($area in ('北京','上海','广州', '深圳')):
+                    10
+                elseif($area in ('杭州','成都','武汉','天津')):
+                    8
+                elseif($area in('郑州','长沙','海口','南宁')):
+                    6
+                else:
+                    4
+              ]]>
+            <!--
+            <![CDATA[
+                if($area == '北京' || $area == '上海' || $area == '广州' || $area == '深圳' ):
+                  10
+                elseif($area == '杭州' || $area == '成都' || $area == '武汉' || $area == '天津'):
+                  8
+                elseif($area == '郑州' || $area == '长沙' || $area == '海口' || $area == '南宁'):
+                  6
+                else:
+                  4
+            ]]>
+            -->
+        </expression>
+    </rule>
+
+    <rule code="Graded" name="评分" version="1.0.0" returnType="Float">
+        <description>根据资产方提供的资料进行评分</description>
+        <expression>
+            <![CDATA[
+               if(#Area in (8,10)):
+                    1 + 1.2 * #Age + #Area/3
+               else:
+                  -10 + 1.2 * #Age + #Area/3
+            ]]>
+        </expression>
+    </rule>
+
+    <!--<rule code="Graded" name="评分" version="1.0.0" returnType="Float">-->
+        <!--<description>根据资产方提供的资料进行评分</description>-->
+        <!--<expression>-->
+            <!--<![CDATA[-->
+                <!--if($age >  60):-->
+                    <!--(if($age >  90):-->
+                        <!--'A'-->
+                    <!--elseif($age >  80):-->
+                        <!--'B'-->
+                    <!--else:-->
+                        <!--'C') +-->
+                <!--(if($income >  90):-->
+                        <!--'D'--git
+                    <!--elseif($income >  80):-->
+                        <!--'E'-->
+                    <!--else:-->
+                        <!--'F')-->
+                 <!--else:-->
+                   <!--'D'-->
+            <!--]]>-->
+        <!--</expression>-->
+    <!--</rule>-->
+</rules>

@@ -1,0 +1,25 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_runtime_rule_DS4Q</code>
+  <entity>cfg_runtime_rule</entity>
+  <name>动态规则【查询】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="input" is-key="true"/>
+    <field code="code" name="规则编码" edit-type="input" not-null="true"/>
+    <field code="name" name="规则名称" edit-type="input" not-null="true"/>
+    <field code="version" name="版本" edit-type="input" not-null="true"/>
+    <field code="expresssion" name="表达式" edit-type="input"/>
+    <field code="description" name="描述" edit-type="input"/>
+    <field code="return_type" name="返回类型" edit-type="select">
+      <enum-class code="cfg_runtime_rule.return_type"/>
+    </field>
+    <field code="features" name="特征" edit-type="select" not-null="true">
+      <rel entity-code="cfg_feature/id/name"/>
+    </field>
+    <field code="ctime" name="创建时间" edit-type="input" not-null="true"/>
+    <field code="mtime" name="修改时间" edit-type="input"/>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="cfg_runtime_rule.state"/>
+    </field>
+  </fields>
+</dataset>

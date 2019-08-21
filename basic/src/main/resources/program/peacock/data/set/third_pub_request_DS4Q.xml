@@ -1,0 +1,30 @@
+<dataset>
+  <module>config</module>
+  <code>third_pub_request_DS4Q</code>
+  <entity>third_pub_request</entity>
+  <name>公共请求参数【查询】</name>
+  <fields>
+    <field code="id" name="参数id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="name_LKE" name="参数名称" edit-type="input" not-null="true"/>
+    <field code="domain_id" name="访问域id" edit-type="hidden" not-null="true">
+      <rel entity-code="third_domain/id/name"/>
+    </field>
+    <field code="path_LKE" name="参数路径" edit-type="input" not-null="true"/>
+    <field code="type" name="参数类型" edit-type="select">
+      <enum-class code="third_pub_request.type"/>
+    </field>
+    <field code="required" name="是否必填" edit-type="select">
+      <enum-class code="DEFAULT.BOOLEAN"/>
+    </field>
+    <field code="check_rule_LKE" name="检查规则" edit-type="input"/>
+    <field code="value_LKE" name="参数取值" edit-type="input"/>
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+    </field>
+    <field code="create_time" name="创建时间" edit-type="hidden"/>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+    </field>
+    <field code="modify_time" name="修改时间" edit-type="hidden"/>
+  </fields>
+</dataset>

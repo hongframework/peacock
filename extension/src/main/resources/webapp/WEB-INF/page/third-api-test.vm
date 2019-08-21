@@ -1,0 +1,297 @@
+#if($isPop)
+    #parse("blank_startpart.vm")
+#else
+    #parse("default_startpart.vm")
+#end
+<pre  id="domainId" style="display: none;">$!{dynDataString}</pre>
+<input type="hidden" id="kv-container-cache">
+<!-- Content -->
+##<div class="container">
+<div class="row-fluid">
+    <div class=" span6 " id="test-div" group="">
+        <div class="row-fluid">
+            <div class="box span12 hflist" id="" module="" page="" param="" component="">
+                <div class="box-header">
+                    <h2><i class="icon-tags"></i><span class="break"></span>在线HTTP接口测试</h2>
+                    <div class="box-icon">
+                        <a href="#" id="test-to-left" style="display: none"><i class="icon-chevron-left"></i></a>
+                        <a href="#" id="test-to-right"><i class="icon-chevron-right"></i></a>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <div class="row-fluid" style="padding-bottom:10px">
+
+                        <h3><i class="icon-hand-right"></i>&nbsp;概述</h3>
+                        <table class="table table-bordered table-striped table-condensed"
+                               style="margin-left:10px;width:90%;">
+                            <tbody class="hflist-data">
+                            <tr>
+                                <th class="span1"><select id='method'  name='method' class="input-mini" data-value="post" style="width: 80px;"  data-code="third_api.method" data-condition="1=1"  not-null="true"></select>
+                                </th>
+                                <td class="span10"><input class="input-mini span12 focused" id="url" type="text" ></td>
+                                <th class="span1" rowspan="2" style="width: 90px;"><a class="btn btn-success" id="send-request-btn" href="javascript:void(0)"  style="font-size: medium;padding-top: 18px;padding-bottom: 18px;">发送请求</a></th>
+                            </tr>
+                            <tr>
+                                <td colspan="2" style="text-align: right;"><a class="btn" id="add-pub-btn" href="javascript:void(0)" style="margin-right: 5px;">添加公共参数</a>
+                                    <a class="btn btn-info" id="config-review-btn" href="javascript:void(0)" style="margin-right: 5px;">智能配置</a></td>
+##                                <td class="span12" colspan="2">
+##                                    <table><tr>
+##                                        <td class="span7"><a class="btn" href="javascript:void(0)">添加公共参数</a></td>
+##                                        <td class="span5"><a class="btn btn-success" href="javascript:void(0)"  style="font-size: medium;">发送请求</a>
+##                                            <a class="btn btn-info hfhref" href="javascript:void(0)"  style="font-size: medium;">智能配置</a></td>
+##                                    </tr></table>
+##                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <h3 class="area-h3"><i class="icon-hand-right"></i>&nbsp;请求参数[<a id="copy-request-parameters" href="javascript:void(0);"  style="color: red;">复制</a>]</h3>
+                    <div class="row-fluid"   component="request-parameter-example" style="display: none;">
+                        <form>
+                            <table id="requset_parameter_table" class="table table-bordered table-striped table-condensed"
+                                   style="margin-left:10px;width:90%;">
+                                <thead>
+                                <tr>
+                                    <th width="20%" code="code">参数名</th>
+                                    <th width="20%" code="value">参数类型</th>
+                                    <th width="40%" code="value">参数值</th>
+                                    <th width="20%" code="value"></th>
+                                </tr>
+                                </thead>
+                                <tbody class="hflist-data">
+                                <tr>
+                                    <td>
+                                        <input class="input-mini span12 focused" name="name" type="text" not-null="true">
+                                    </td>
+                                    <td>
+                                        <select  name='type' class="input-small" >
+                                            <option value="string" selected="selected">字符串</option>
+                                            <option value="integer">数字</option>
+                                        </select>
+                                    </td>
+                                    <td>
+                                        <input class="input-mini span12 focused" name="value" type="text">
+                                    </td>
+                                    <td class="center" width="50px;">
+                                        <input class="input-mini span12 focused" name="desc" type="hidden">
+                                        <a class="btn btn-success hfhref" href="javascript:void(0)" params=""
+                                           action="{&quot;component.row.add&quot;:{&quot;param&quot;:&quot;{}&quot;}}">
+                                            <i class=" icon-file-alt"></i>
+                                        </a>
+                                        <a class="btn btn-danger hfhref extend-btn" href="javascript:void(0)" params="" action="{&quot;component.row.delete&quot;:{&quot;param&quot;:&quot;{}&quot;}}"><i class="icon-trash"></i></a>
+                                    </td>
+                                    <input name="EOFR_EDIT_FLAG" type="hidden">
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <h3  class="area-h3"><i class="icon-hand-right"></i>&nbsp;请求报文[<a id="copy-request-body" href="javascript:void(0);" style="color: red;">复制</a>]</h3>
+                    <div class="row-fluid"   component="request-body-example" style="display: none;">
+                        <form>
+                            <table class="table table-bordered table-striped table-condensed"
+                                   style="margin-left:10px;width:90%;">
+                                <tbody class="hflist-data">
+                                <tr>
+                                    <td><textarea id="request-message-body" name="request-message-body" class="span12" style="margin-bottom: 1px;height: 100px;"></textarea></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <h3  class="area-h3"><i class="icon-hand-right"></i>&nbsp;响应报文[<a id="copy-response-body" href="javascript:void(0);" style="color: red;">复制</a>]</h3>
+                    <div class="row-fluid"   component="response-body-example">
+                        <form>
+                            <table class="table table-bordered table-striped table-condensed"
+                                   style="margin-left:10px;width:90%;">
+                                <tbody class="hflist-data">
+                                <tr>
+                                    <td><textarea id="response-message-body" name="response-message-body" class="span12" style="margin-bottom: 1px;height: 100px;"></textarea></td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="conf-div" class=" span6 " group="">
+        <div class="row-fluid" id="/api/base/baize/download">
+            <div class="box span12 hflist" id="" module="" page="" param="">
+                <span class="ruler" style="display: none;">{}</span>
+                <div class="box-header">
+                    <h2><a href="#" id="conf-to-left"><i class="icon-chevron-left"></i></a>
+                        <a href="#" id="conf-to-right"  style="display: none"><i class="icon-chevron-right"></i></a>
+                        <span class="break"></span>逆向预览</h2>
+                    <div class="box-icon">
+                        <i class="icon-tags"></i>
+                    </div>
+                </div>
+                <div class="box-content">
+                    <div class="row-fluid" style="padding-bottom:10px">
+
+                        <h3><i class="icon-hand-right"></i>&nbsp;API基本信息</h3>
+                        <div class="row-fluid"   component="api-config-table">
+                        <form>
+                        <table class="table table-bordered table-striped table-condensed"
+                               style="margin-left:10px;width:50%;">
+
+                            <tbody class="hflist-data">
+
+                            <tr>
+                                <th><span>请求路径</span></th>
+                                <td><input  name="request-path" type="hidden"><span class="hidden-show-span"></span></td>
+                            </tr>
+                            <tr>
+                                <th><span>请求方式</span></th>
+                                <td><input  name="request-method" type="hidden"><span class="hidden-show-span"></span></td>
+                            </tr>
+                            <tr>
+                                <th><span>请求数据</span></th>
+                                <td><input name="request-data" type="hidden"><span class="hidden-show-span"></span></td>
+                            </tr>
+                            <tr>
+                                <th><span>响应数据</span></th>
+                                <td><input name="response-data" type="hidden"><span class="hidden-show-span"></span></td>
+                            </tr>
+                            <tr>
+                                <th><span style="color: red">*</span><span>API名称</span></th>
+                                <td><input class="input-mini span12 focused" name="api-name" type="text" not-null="true"></td>
+                            </tr>
+                            <tr>
+                                <th><span style="color: red">*</span><span>API类型</span></th>
+                                <td><select id='api-type'  name='api-type' class="input-xlarge" data-value="post"
+                                            data-code="third_api.api_type" data-condition="1=1"  not-null="true"></td>
+                            </tr>
+                            <input name="api-id" type="hidden">
+                            <input name="api-domainId" type="hidden">
+                            </tbody>
+
+                        </table>
+                        </form>
+                        </div>
+                    </div>
+
+                    <h3><i class="icon-hand-right"></i>&nbsp;请求参数[<a class="set-name-by-code" href="javascript:void(0);" style="color: red;">快速设置名称</a>]</h3>
+                    <div class="row-fluid"  component="request-parameter-table"  style="display: none;">
+                    <form>
+                        <table class="table table-bordered table-striped table-condensed"  id="request-parameter-table"
+                               style="margin-left:10px;width:90%;">
+                            <thead>
+                            <tr>
+                                <th width="10%" colspan="2">操作</th>
+                                <th width="15%" code="type">参数类型</th>
+                                <th width="15%" code="code">参数名称</th>
+                                <th width="25%" code="code">批量支持</th>
+                                <th width="35%" code="required">中文名称</th>
+                            </tr>
+                            </thead>
+
+                            <tbody class="hflist-data">
+                            <tr>
+                                <td><a href="javascript:void(0)" class="btn btn-info  save-common-parameter" style="display: none;"><i class="icon-share"></i></a><input name="is_common" type="hidden"></td>
+                                <td><input name="oper" type="hidden"><span class="hidden-show-span"></span></td>
+                                <td><select  name='type' class="input-small" data-value=""
+                                             data-code="third_pub_request.type" data-condition="1=1"  not-null="true"></td>
+                                <td><input name="path" type="hidden"><span class="hidden-show-span"></span></td>
+                                <td><select  name='helper' class="input-medium">
+                                    <option value="">无</option>
+                                    <option value="batch_join_by_commas">多个用逗号分隔</option>
+                                </select></td>
+                                <td><input class="input-mini span12" id="name" name="name" type="text" not-null="true"><input name="value" type="hidden"><input name="is_pub" type="hidden"></td>
+                                <input name="EOFR_EDIT_FLAG" type="hidden">
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    </div>
+                    <h3><i class="icon-hand-right"></i>&nbsp;请求报文[<a class="set-name-by-code" href="javascript:void(0);" style="color: red;">快速设置名称</a>]</h3>
+                    <div class="row-fluid"  component="request-body-table"  style="display: none;">
+                        <form>
+                            <table class="table table-bordered table-striped table-condensed"  id="request-body-table"
+                                   style="margin-left:10px;width:90%;">
+                                <thead>
+                                <tr>
+                                    <th width="10%" colspan="2">操作</th>
+                                    <th width="20%" code="type">数据类型</th>
+                                    <th width="35%" code="code">数据路径</th>
+                                    <th width="35%" code="required">中文名称</th>
+
+                                </tr>
+                                </thead>
+
+                                <tbody class="hflist-data">
+                                <tr>
+                                    <td><a href="javascript:void(0)" class="btn btn-info  save-common-parameter" style="display: none;"><i class="icon-share"></i></a><input name="is_common" type="hidden"></td>
+                                    <td><input name="oper" type="hidden"><span class="hidden-show-span"></span></td>
+                                    <td><select  name='type' class="input-small" data-value=""
+                                                 data-code="third_pub_request.type" data-condition="1=1"  not-null="true"></td>
+                                    <td><input name="path" type="hidden"><span class="hidden-show-span"></span></td>
+                                    <td><input class="input-mini span12" id="name" name="name" type="text" not-null="true"><input name="is_pub" type="hidden"><input name="value" type="hidden"></td>
+                                    <input name="EOFR_EDIT_FLAG" type="hidden">
+
+                                </tr>
+                                </tbody>
+                            </table>
+                        </form>
+                    </div>
+                    <h3><i class="icon-hand-right"></i>&nbsp;响应数据[<a class="set-name-by-code" href="javascript:void(0);" style="color: red;">快速设置名称</a>]</h3>
+                    <div class="row-fluid"   component="response-config-table" style="display: none;">
+                    <form>
+                        <table class="table table-bordered table-striped table-condensed" id="response-config-table"
+                               style="margin-left:10px;width:90%;">
+                            <thead>
+                            <tr>
+                                <th width="10%" colspan="2">操作</th>
+                                <th width="15%" code="type">数据类型</th>
+                                <th width="15%" code="code">数据路径</th>
+                                <th width="25%" code="code">批量支持</th>
+                                <th width="35%" code="required">中文名称</th>
+                            </tr>
+                            </thead>
+
+                            <tbody class="hflist-data">
+                            <tr>
+                                <td>
+                                   <a href="javascript:void(0)" class="btn btn-info  save-common-parameter" style="display: none;"><i class="icon-share"></i></a><input name="is_common" type="hidden"></td>
+                                <td><input name="oper" type="hidden"><span class="hidden-show-span"></span></td>
+                                <td><select  name='type' class="input-small"  data-value=""
+                                             data-code="third_pub_request.type" data-condition="1=1"  not-null="true"></td>
+                                <td><input name="full_path" type="hidden"><input name="path" type="hidden"><span class="hidden-show-span"></span></td>
+                                <td><select  name='helper' class="input-medium">
+                                    <option value="">无</option>
+                                    <option value="batch_join_by_commas">多个用逗号分隔</option>
+                                </select></td>
+                                <td><input class="input-mini span12" id="name" name="name" type="text" not-null="true"><input name="value" type="hidden"><input name="is_pub" type="hidden"></td>
+                                <input name="EOFR_EDIT_FLAG" type="hidden">
+                            </tr>
+                            </tbody>
+                        </table>
+                    </form>
+                    </div>
+                    <div class="form-actions" style="text-align: center;padding-top:10px;padding-bottom:10px;">
+                        <button class="btn hfhref btn-primary" onclick="javascript:void(0)"
+                                params=""
+                                action="{&quot;ajaxSubmitByJson&quot;:{&quot;param&quot;:&quot;{}&quot;,&quot;targetId&quot;:&quot;request-parameter-example,request-body-example,response-body-example,api-config-table,request-parameter-table,request-body-table,response-config-table&quot;,&quot;action&quot;:&quot;/extend/configMergeSubmit.json&quot;}}" title=" 保 存 "> 保 存 </button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+##    </div>
+</div>
+
+#if($isPop)
+    #parse("blank_endpart.vm")
+#else
+    #parse("default_endpart.vm")
+#end
+<script src="$staticResourcePath/app/js/third-api-test.js"></script>
+<script>
+
+
+</script>

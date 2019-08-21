@@ -1,0 +1,20 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_datasouce_hbase</code>
+  <entity>cfg_datasouce_hbase</entity>
+  <name>HBASE【默认】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="hidden" is-key="true">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="zklist" name="ZKLIST" edit-type="input" not-null="true" is-name="true"/>
+    <field code="zkport" name="ZKPROT" edit-type="input" not-null="true"/>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="cfg_datasouce_hbase.state"/>
+    </field>
+    <field code="remark" name="备注" edit-type="input"/>
+    <field code="ctime" name="创建时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>text</update-edit-type>     </field>
+    <field code="mtime" name="修改时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>hidden</update-edit-type>     </field>
+  </fields>
+</dataset>

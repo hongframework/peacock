@@ -1,0 +1,24 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_api_def</code>
+  <entity>cfg_api_def</entity>
+  <name>API定义表【默认】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="hidden" is-key="true">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="path" name="API路径" edit-type="input" not-null="true"/>
+    <field code="name" name="API名称" edit-type="input" not-null="true"/>
+    <field code="version" name="API版本" edit-type="input" not-null="true"/>
+    <field code="prop_key" name="属性Key" edit-type="input" not-null="true"/>
+    <field code="prop_type" name="属性类型" edit-type="select" not-null="true">
+      <enum-class code="cfg_api_def.prop_type"/>
+    </field>
+    <field code="prop_options" name="属性支持选项通过json存储" edit-type="input"/>
+    <field code="prop_description" name="对属性的一些说明" edit-type="input"/>
+    <field code="remark" name="备注" edit-type="input"/>
+    <field code="ctime" name="创建时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>text</update-edit-type>     </field>
+    <field code="mtime" name="修改时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>hidden</update-edit-type>     </field>
+  </fields>
+</dataset>

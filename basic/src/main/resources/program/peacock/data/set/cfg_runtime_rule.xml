@@ -1,0 +1,25 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_runtime_rule</code>
+  <entity>cfg_runtime_rule</entity>
+  <name>动态规则【默认】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="hidden" is-key="true">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>text</update-edit-type>     </field>
+    <field code="code" name="规则编码" edit-type="input" not-null="true"/>
+    <field code="name" name="规则名称" edit-type="input" not-null="true"/>
+    <field code="version" name="版本" edit-type="input" not-null="true"/>
+    <field code="expresssion" name="表达式" edit-type="hidden"   show-type="hidden"/>
+    <field code="description" name="描述" edit-type="input"/>
+    <field code="return_type" name="返回类型" edit-type="select">
+      <enum-class code="cfg_runtime_rule.return_type"/>
+    </field>
+    <field code="features" name="特征" edit-type="select" not-null="true">
+      <rel entity-code="cfg_feature/id/name"/>
+    </field>
+    <field code="ctime" name="创建时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>text</update-edit-type>     </field>
+    <field code="mtime" name="修改时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>hidden</update-edit-type>     </field>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="cfg_runtime_rule.state"/>
+    </field>
+  </fields>
+</dataset>

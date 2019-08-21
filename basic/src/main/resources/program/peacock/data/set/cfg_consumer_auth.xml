@@ -1,0 +1,20 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_consumer_auth</code>
+  <entity>cfg_consumer_auth</entity>
+  <name>API消费者授权【默认】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="hidden" is-key="true">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="client_id" name="客户端访问Id" edit-type="input" not-null="true"/>
+    <field code="auth_path" name="API路径，支持*匹配" edit-type="input" not-null="true"/>
+    <field code="remark" name="备注" edit-type="input"/>
+    <field code="ctime" name="创建时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>text</update-edit-type>     </field>
+    <field code="mtime" name="修改时间" edit-type="hidden">       <create-edit-type>hidden</create-edit-type>       <update-edit-type>hidden</update-edit-type>     </field>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="DEFAULT.BOOLEAN-NORMAL-DISABLE"/>
+    </field>
+  </fields>
+</dataset>

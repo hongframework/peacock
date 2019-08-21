@@ -1,0 +1,39 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_runtime_trace</code>
+  <entity>cfg_runtime_trace</entity>
+  <name>链路采集【默认】</name>
+  <fields>
+    <field code="id" name="跟踪配置id" edit-type="hidden" is-key="true" not-null="true"/>
+    <field code="name" name="跟踪配置名称" edit-type="input" not-null="true"/>
+    <field code="program_id" name="项目id" edit-type="select" not-null="true">
+      <rel entity-code="cfg_mgr_program/id/name"/>
+    </field>
+    <field code="node_id" name="节点id" edit-type="select" not-null="true">
+      <rel entity-code="cfg_node/id/name" rel-field="program_id"/>
+    </field>
+    <field code="content" name="配置内容" edit-type="textarea"/>
+    <field code="status" name="状态" edit-type="select">
+      <enum-class code="cfg_mgr_module.status"/>
+    </field>
+
+    <field code="creator_id" name="创建人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="create_time" name="创建时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>text</update-edit-type>
+    </field>
+    <field code="modifier_id" name="修改人" edit-type="hidden">
+      <rel entity-code="user/user_id/user_name" add-by-global="true"/>
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+    <field code="modify_time" name="修改时间" edit-type="hidden">
+      <create-edit-type>hidden</create-edit-type>
+      <update-edit-type>hidden</update-edit-type>
+    </field>
+  </fields>
+</dataset>

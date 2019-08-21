@@ -1,0 +1,37 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_runtime_api_DS4Q</code>
+  <entity>cfg_runtime_api</entity>
+  <name>动态API【查询】</name>
+  <fields>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="cfg_runtime_api.state"/>
+    </field>
+    <field code="program_id" name="项目id" edit-type="select" not-null="true">
+      <rel entity-code="cfg_mgr_program/id/name"/>
+    </field>
+    <field code="module_id" name="模块id" edit-type="select" not-null="true">
+      <rel entity-code="cfg_mgr_module/id/name" rel-field="program_id"/>
+    </field>
+    <field code="version_id" name="版本id" edit-type="select" not-null="true">
+      <rel entity-code="cfg_mgr_version/id/null" rel-field="program_id"/>
+    </field>
+    <field code="tags" name="标签" edit-type="select">
+      <enum-class code="cfg_runtime_api.tags"/>
+    </field>
+    <field code="id" name="主键ID" edit-type="input" is-key="true" not-null="true"/>
+    <field code="module" name="API归属模块" edit-type="input" not-null="true"/>
+    <field code="name" name="API名称" edit-type="input" is-name="true" not-null="true"/>
+    <field code="title" name="API标题" edit-type="input" not-null="true"/>
+    <field code="examples_LKE" name="请求样例" edit-type="hidden"/>
+    <field code="description" name="API描述" edit-type="input"/>
+    <field code="path" name="API路径" edit-type="input"/>
+    <field code="version" name="API版本" edit-type="input" not-null="true"/>
+    <field code="content" name="配置内容" edit-type="input" not-null="true"/>
+    <field code="remark" name="备注" edit-type="input"/>
+    <field code="ctime" name="创建时间" edit-type="input" not-null="true"/>
+    <field code="mtime" name="修改时间" edit-type="input"/>
+    <field code="valid_time" name="生效时间" edit-type="input"/>
+    <field code="invalid_time" name="失效时间" edit-type="input"/>
+  </fields>
+</dataset>

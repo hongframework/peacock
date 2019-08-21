@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.hframework.peacock.config.dao.CfgIndexRedisMapper" >
+  <resultMap id="BaseResultMap" type="com.hframework.peacock.config.domain.model.CfgIndexRedis" >
+    <constructor >
+      <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="index_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="redis_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="data_type" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="key_converter" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="key_parts" jdbcType="VARCHAR" javaType="java.lang.String" />
+      <arg column="method" jdbcType="TINYINT" javaType="java.lang.Byte" />
+      <arg column="ctime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+      <arg column="mtime" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </constructor>
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, index_id, redis_id, data_type, key_converter, key_parts, `method`, ctime, mtime
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.hframework.peacock.config.domain.model.CfgIndexRedis_Example" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from `cfg_index_redis`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+    <if test="limitEnd != null and limitEnd != 0" >
+      limit #{limitStart} , #{limitEnd}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from `cfg_index_redis`
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from `cfg_index_redis`
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.hframework.peacock.config.domain.model.CfgIndexRedis_Example" >
+    delete from `cfg_index_redis`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.hframework.peacock.config.domain.model.CfgIndexRedis" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_index_redis` (index_id, redis_id, data_type, 
+      key_converter, key_parts, `method`, 
+      ctime, mtime)
+    values (#{indexId,jdbcType=INTEGER}, #{redisId,jdbcType=INTEGER}, #{dataType,jdbcType=TINYINT}, 
+      #{keyConverter,jdbcType=TINYINT}, #{keyParts,jdbcType=VARCHAR}, #{method,jdbcType=TINYINT}, 
+      #{ctime,jdbcType=INTEGER}, #{mtime,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.hframework.peacock.config.domain.model.CfgIndexRedis" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into `cfg_index_redis`
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="indexId != null" >
+        index_id,
+      </if>
+      <if test="redisId != null" >
+        redis_id,
+      </if>
+      <if test="dataType != null" >
+        data_type,
+      </if>
+      <if test="keyConverter != null" >
+        key_converter,
+      </if>
+      <if test="keyParts != null" >
+        key_parts,
+      </if>
+      <if test="method != null" >
+        `method`,
+      </if>
+      <if test="ctime != null" >
+        ctime,
+      </if>
+      <if test="mtime != null" >
+        mtime,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="indexId != null" >
+        #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="redisId != null" >
+        #{redisId,jdbcType=INTEGER},
+      </if>
+      <if test="dataType != null" >
+        #{dataType,jdbcType=TINYINT},
+      </if>
+      <if test="keyConverter != null" >
+        #{keyConverter,jdbcType=TINYINT},
+      </if>
+      <if test="keyParts != null" >
+        #{keyParts,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        #{method,jdbcType=TINYINT},
+      </if>
+      <if test="ctime != null" >
+        #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="mtime != null" >
+        #{mtime,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.hframework.peacock.config.domain.model.CfgIndexRedis_Example" resultType="java.lang.Integer" >
+    select count(*) from `cfg_index_redis`
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update `cfg_index_redis`
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.indexId != null" >
+        index_id = #{record.indexId,jdbcType=INTEGER},
+      </if>
+      <if test="record.redisId != null" >
+        redis_id = #{record.redisId,jdbcType=INTEGER},
+      </if>
+      <if test="record.dataType != null" >
+        data_type = #{record.dataType,jdbcType=TINYINT},
+      </if>
+      <if test="record.keyConverter != null" >
+        key_converter = #{record.keyConverter,jdbcType=TINYINT},
+      </if>
+      <if test="record.keyParts != null" >
+        key_parts = #{record.keyParts,jdbcType=VARCHAR},
+      </if>
+      <if test="record.method != null" >
+        `method` = #{record.method,jdbcType=TINYINT},
+      </if>
+      <if test="record.ctime != null" >
+        ctime = #{record.ctime,jdbcType=INTEGER},
+      </if>
+      <if test="record.mtime != null" >
+        mtime = #{record.mtime,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update `cfg_index_redis`
+    set id = #{record.id,jdbcType=INTEGER},
+      index_id = #{record.indexId,jdbcType=INTEGER},
+      redis_id = #{record.redisId,jdbcType=INTEGER},
+      data_type = #{record.dataType,jdbcType=TINYINT},
+      key_converter = #{record.keyConverter,jdbcType=TINYINT},
+      key_parts = #{record.keyParts,jdbcType=VARCHAR},
+      `method` = #{record.method,jdbcType=TINYINT},
+      ctime = #{record.ctime,jdbcType=INTEGER},
+      mtime = #{record.mtime,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.hframework.peacock.config.domain.model.CfgIndexRedis" >
+    update `cfg_index_redis`
+    <set >
+      <if test="indexId != null" >
+        index_id = #{indexId,jdbcType=INTEGER},
+      </if>
+      <if test="redisId != null" >
+        redis_id = #{redisId,jdbcType=INTEGER},
+      </if>
+      <if test="dataType != null" >
+        data_type = #{dataType,jdbcType=TINYINT},
+      </if>
+      <if test="keyConverter != null" >
+        key_converter = #{keyConverter,jdbcType=TINYINT},
+      </if>
+      <if test="keyParts != null" >
+        key_parts = #{keyParts,jdbcType=VARCHAR},
+      </if>
+      <if test="method != null" >
+        `method` = #{method,jdbcType=TINYINT},
+      </if>
+      <if test="ctime != null" >
+        ctime = #{ctime,jdbcType=INTEGER},
+      </if>
+      <if test="mtime != null" >
+        mtime = #{mtime,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.hframework.peacock.config.domain.model.CfgIndexRedis" >
+    update `cfg_index_redis`
+    set index_id = #{indexId,jdbcType=INTEGER},
+      redis_id = #{redisId,jdbcType=INTEGER},
+      data_type = #{dataType,jdbcType=TINYINT},
+      key_converter = #{keyConverter,jdbcType=TINYINT},
+      key_parts = #{keyParts,jdbcType=VARCHAR},
+      `method` = #{method,jdbcType=TINYINT},
+      ctime = #{ctime,jdbcType=INTEGER},
+      mtime = #{mtime,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

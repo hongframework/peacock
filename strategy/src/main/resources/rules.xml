@@ -1,0 +1,118 @@
+<rules>
+    <rule code="GaoWei" name="高危用户" version="1.0.0" returnType="Boolean">
+        <description>累计投资次数大于等于3次，最近两周内存在回款，当前在途金额为0，不包括近6月最高日在途小于1000且累计投资年化小于500</description>
+        <expression>
+            <![CDATA[
+                $totalInvestCount >= 3 && $lastRefundTime >= now()-week() * 2 && $investingAmount == 0 && ($totalYearInvestedAmount >=500 || $maxDayInvestingAmountOfSixMonth >= 1000)
+            ]]>
+        </expression>
+    </rule>
+    <rule code="ChenMo" name="沉默用户" version="1.0.0" returnType="Boolean">
+        <description>累计投资次数大于等于3次....</description>
+        <expression>
+            <![CDATA[
+                $totalInvestCount >= 3 && $investingAmount == 0 && now() - day()*67 <= $lastInvestedTime && $lastInvestedTime < now() - day()*60  && ($totalYearInvestedAmount >=500 || $maxDayInvestingAmountOfSixMonth >= 1000)
+            ]]>
+        </expression>
+    </rule>
+    <rule code="ChenDian" name="资金沉淀用户" version="1.0.0" returnType="Boolean">
+        <description>累计投资次数大于等于3次....</description>
+        <expression>
+            <![CDATA[
+                $totalInvestCount >= 3
+                 && $balance > 10000
+                 &&($lastRechargeTime <= now() - day()*7 && $lastInvestedTime <= now() - day()*7 && $lastWithdrawTime <= now() - day()*7)
+                 &&(now() - day()*15 < $lastRechargeTime || now() - day()*15 < $lastInvestedTime || now() - day()*15 < $lastWithdrawTime)
+            ]]>
+        </expression>
+    </rule>
+    <rule code="HuoYue" name="活跃用户" version="1.0.0" returnType="Boolean">
+        <description>累计投资次数大于等于3次....</description>
+        <expression>
+            <![CDATA[
+                $totalInvestCount >= 3 && $investingAmount > 0 &&($lastLevel == "活跃用户")
+            ]]>
+        </expression>
+    </rule>
+    <rule code="GaoQian" name="高潜力用户" version="1.0.0" returnType="Boolean">
+        <description>累计投资次数大于等于3次....</description>
+        <expression>
+            <![CDATA[
+                $totalInvestCount >= 3 && $investingAmount > 0 && $potentialValue > 10000 && $balance + $planingRefundAmount < 0.5 * 300
+            ]]>
+        </expression>
+    </rule>
+    <rule code="LiuShi" name="流失用户" version="1.0.0" returnType="Boolean">
+        <description>累计投资次数大于等于3次....</description>
+        <expression>
+            <![CDATA[
+                $totalInvestCount >= 3 && (now() - day()*90 < $lastWithdrawTime && $lastWithdrawTime <= now() -day()*60) && $investingAmount == 0 && $frozen == 0 && $balance < 100 && $totalYearInvestedAmount >= 500
+            ]]>
+        </expression>
+    </rule>
+
+    <rule code="ZhouQi" name="用户生命周期" version="1.0.0" returnType="Enum">
+        <description>累计投资次数大于等于3次....</description>
+        <relateRules>
+            <relateRule code="GaoWei" version="1.0.0" />
+            <relateRule code="ChenDian" version="1.0.0"/>
+            <relateRule code="HuoYue" version="1.0.0"/>
+            <relateRule code="GaoQian" version="1.0.0"/>
+            <relateRule code="LiuShi" version="1.0.0"/>
+        </relateRules>
+        <!--<expression>-->
+            <!--<![CDATA[-->
+                <!--#GaoWei: 高危用户-->
+                <!--#ChenMo:沉默用户-->
+                <!--#ChenDian:资金沉淀用户-->
+                <!--#HuoYue:活跃用户-->
+                <!--#GaoQian:高潜力用户-->
+                <!--#LiuShi: 流失用户-->
+                    <!--:未知用户-->
+            <!--]]>-->
+        <!--</expression>-->
+        <expression>
+            <![CDATA[
+                if(#HuoYue):
+                    '活跃用户'
+                elseif(#LiuShi):
+                    "流失用户"
+                elseif(#ChenMo):
+                    "沉默用户"
+                elseif(#GaoWei):
+                    "高危用户"
+                elseif(#ChenDian):
+                    "资金沉淀用户"
+                elseif(#GaoQian):
+                    "高潜力用户"
+                else:
+                    '未知用户'
+            ]]>
+        </expression>
+    </rule>
+    <rule code="GaoWeiChangQi" name="高危沉默用户" version="1.0.0" returnType="Boolean">
+        <description>高危或者沉默用户</description>
+        <expression>
+            <![CDATA[
+                #GaoWei || #ChenMo || #ChenDian  || #HuoYue
+            ]]>
+        </expression>
+    </rule>
+
+    <!-- TODO 黄金 智多星 -->
+    <rule code="CustomTicket" name="定制券发送规则" version="1.0.0" returnType="Enum">
+        <description>定制券发送规则，根据用户ID或者回款ID判断用户是否是新手客户，预警流失客户，流式客户发券</description>
+        <expression>
+            <![CDATA[
+                if($repayId > 0 && $getCurrentRepayTimes <= 3):
+                    ($balance + $bonusBalance) * 1.2, 3, 'newUser'
+                elseif($repayId > 0 && $totalInvestCount >= 3 && $getFutureRepayCount == 0 && $getCurrentRepayTimes == $getHistRepayCount && $isLossWarningUser):
+                    $getHistLowInvestMoney, $getHistShortInvestPeriod, 'lossWarningUser'
+                elseif($repayId <= 0 && $totalInvestCount >= 3 && $lastWithdrawTime != null && $lastWithdrawTime <= now() -day()*15 && $investingAmount == 0 && $frozen == 0 && $balance < 100):
+                    $getHistLowInvestMoney, $getHistShortInvestPeriod, 'lossUser'
+                else:
+                    0,0,'unknown'
+            ]]>
+        </expression>
+    </rule>
+</rules>

@@ -1,0 +1,21 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_index_mysql_DS4Q</code>
+  <entity>cfg_index_mysql</entity>
+  <name>MYSQL指标【查询】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="input" is-key="true"/>
+    <field code="index_id" name="指标ID" edit-type="select" not-null="true">
+      <rel entity-code="cfg_index/id/name"/>
+    </field>
+    <field code="mysql_id" name="MYSQL ID" edit-type="select" not-null="true">
+      <rel entity-code="cfg_datasouce_mysql/id/username"/>
+    </field>
+    <field code="table" name="表名" edit-type="input"/>
+    <field code="primary_key" name="主键" edit-type="input"/>
+    <field code="column" name="属性列" edit-type="input"/>
+    <field code="sql" name="SQL语句" edit-type="input"/>
+    <field code="ctime" name="创建时间" edit-type="input" not-null="true"/>
+    <field code="mtime" name="修改时间" edit-type="input"/>
+  </fields>
+</dataset>

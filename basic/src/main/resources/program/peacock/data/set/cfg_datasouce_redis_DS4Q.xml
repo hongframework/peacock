@@ -1,0 +1,19 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_datasouce_redis_DS4Q</code>
+  <entity>cfg_datasouce_redis</entity>
+  <name>REDIS【查询】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="input" is-key="true"/>
+    <field code="host" name="HOST" edit-type="input" not-null="true"/>
+    <field code="port" name="PROT" edit-type="input" not-null="true"/>
+    <field code="auth" name="AUTH" edit-type="input"/>
+    <field code="db" name="DB" edit-type="input" not-null="true"/>
+    <field code="state" name="状态" edit-type="select" not-null="true">
+      <enum-class code="cfg_datasouce_redis.state"/>
+    </field>
+    <field code="remark" name="备注" edit-type="input"/>
+    <field code="ctime" name="创建时间" edit-type="input" not-null="true"/>
+    <field code="mtime" name="修改时间" edit-type="input"/>
+  </fields>
+</dataset>

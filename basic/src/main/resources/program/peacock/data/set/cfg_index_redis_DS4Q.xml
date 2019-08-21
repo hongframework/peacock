@@ -1,0 +1,21 @@
+<dataset>
+  <module>config</module>
+  <code>cfg_index_redis_DS4Q</code>
+  <entity>cfg_index_redis</entity>
+  <name>REDIS指标【查询】</name>
+  <fields>
+    <field code="id" name="主键ID" edit-type="input" is-key="true"/>
+    <field code="index_id" name="指标ID" edit-type="select" not-null="true">
+      <rel entity-code="cfg_index/id/name"/>
+    </field>
+    <field code="redis_id" name="REDIS ID" edit-type="select" not-null="true">
+      <rel entity-code="cfg_datasouce_redis/id/null"/>
+    </field>
+    <field code="data_type" name="数据类型" edit-type="select">
+      <enum-class code="cfg_index_redis.data_type"/>
+    </field>
+    <field code="method" name="判断依据" edit-type="input"/>
+    <field code="ctime" name="创建时间" edit-type="input" not-null="true"/>
+    <field code="mtime" name="修改时间" edit-type="input"/>
+  </fields>
+</dataset>
