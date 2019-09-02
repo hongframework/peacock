@@ -26,6 +26,35 @@ peacock，孔雀，一站式API在线开发平台，通过模块化思路，采�
 
 ## 文档
 * 详见wiki
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%871.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%872.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%873.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%874.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%875.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%876.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%877.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%878.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%879.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8710.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8711.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8712.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8713.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8714.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8715.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8716.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8717.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8718.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8719.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8720.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8721.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8722.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8723.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8724.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8725.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8726.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8727.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8728.JPG)
+![avatar](https://raw.githubusercontent.com/hongframework/wiki-images/master/hamster/peacock%E6%8E%A5%E5%8F%A3%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0v0.1/%E5%B9%BB%E7%81%AF%E7%89%8729.JPG)
 
 ## 下载
 * 待开放
